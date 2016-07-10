@@ -1,0 +1,2 @@
+﻿public class FactoryEvaluator : Evaluator {
+}
