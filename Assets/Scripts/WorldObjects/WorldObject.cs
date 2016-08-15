@@ -6,8 +6,8 @@ public class WorldObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		init();
 		setReferences();
+		init();
 	}
 
 	virtual protected void init () {

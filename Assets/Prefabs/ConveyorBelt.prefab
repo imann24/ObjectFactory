@@ -25,6 +25,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 455298}
   - 212: {fileID: 21273006}
+  - 114: {fileID: 11472776}
   m_Layer: 0
   m_Name: SideRail
   m_TagString: Untagged
@@ -73,6 +74,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 418548}
   - 212: {fileID: 21264450}
+  - 114: {fileID: 11426244}
   m_Layer: 0
   m_Name: SideRail
   m_TagString: Untagged
@@ -89,13 +91,15 @@ GameObject:
   m_Component:
   - 4: {fileID: 421814}
   - 212: {fileID: 21279612}
+  - 114: {fileID: 11447468}
+  - 114: {fileID: 11469304}
   m_Layer: 0
   m_Name: EndRail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &171994
 GameObject:
   m_ObjectHideFlags: 1
@@ -105,13 +109,15 @@ GameObject:
   m_Component:
   - 4: {fileID: 438770}
   - 212: {fileID: 21290162}
+  - 114: {fileID: 11425128}
+  - 114: {fileID: 11461360}
   m_Layer: 0
   m_Name: EndRail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &418548
 Transform:
   m_ObjectHideFlags: 1
@@ -145,7 +151,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.35, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -226,6 +232,55 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11425128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1cbc3358536445aa663664d007dcdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: 0
+--- !u!114 &11426244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1cbc3358536445aa663664d007dcdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: 1
+--- !u!114 &11447468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1cbc3358536445aa663664d007dcdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: 0
+--- !u!114 &11461360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76adc33ded7f405a837ca65a1dfa3e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputSender: {fileID: 0}
+  OuputReceiver: {fileID: 0}
 --- !u!114 &11461858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,6 +292,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe8784c964354b90a6f5599f95e998c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputSender: {fileID: 0}
+  OuputReceiver: {fileID: 0}
+  HideEndRails: 1
+  HideSideRails: 0
+--- !u!114 &11469304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4bf11f49a19e4a0fbb4654994e732d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputSender: {fileID: 0}
+  OuputReceiver: {fileID: 0}
+--- !u!114 &11472776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1cbc3358536445aa663664d007dcdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: 1
 --- !u!212 &21257404
 SpriteRenderer:
   m_ObjectHideFlags: 1
