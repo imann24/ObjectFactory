@@ -7,9 +7,15 @@ using UnityEngine;
 using System.Collections;
 
 public class ConveyorRail : WorldObject {
+	SpriteRenderer spriteRenderer;
 	public PiecePositionType Position;
 
+	protected override void setReferences () {
+		base.setReferences ();
+		spriteRenderer = GetComponent<SpriteRenderer>();
+	}
+
 	public void Toggle (bool isActive) {
-		gameObject.SetActive(isActive);
+		spriteRenderer.enabled = isActive;
 	}
 }
