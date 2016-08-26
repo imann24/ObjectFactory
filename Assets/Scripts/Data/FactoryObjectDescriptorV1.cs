@@ -17,4 +17,21 @@ public class FactoryObjectDescriptorV1 : FactoryObjectDescriptor {
 		this.Shipping = shipping;
 		this.IsSealed = isSealed;
 	}
+
+	public override bool Equals (object obj) {
+		try {
+			FactoryObjectDescriptorV1 otherDescriptor = (FactoryObjectDescriptorV1) obj;
+			return this.Color == otherDescriptor.Color &&
+				this.Materials == otherDescriptor.Materials &&
+				this.Shipping == otherDescriptor.Shipping &&
+				this.IsSealed == otherDescriptor.IsSealed;
+		} 
+		catch {
+			return false;
+		}
+	}
+
+	public override int GetHashCode () {
+		return base.GetHashCode ();
+	}
 }
