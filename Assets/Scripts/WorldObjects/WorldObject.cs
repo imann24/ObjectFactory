@@ -5,8 +5,11 @@ public class WorldObject : MonoBehaviour {
 	protected bool active = false;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		setReferences();
+	}
+
+	void Start () {
 		init();
 	}
 

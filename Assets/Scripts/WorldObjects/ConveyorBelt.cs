@@ -22,6 +22,10 @@ public class ConveyorBelt : WorldSocket {
 	public bool HideEndRails;
 	public bool HideSideRails;
 
+	public void SetBeltSpeed (float beltSpeed) {
+		movementSpeed = beltSpeed / SPEED_TO_FRAME_RATE_RATIO;
+	}
+
 	public float BeltPosition {
 		get {
 			return _beltPosition;
@@ -60,6 +64,7 @@ public class ConveyorBelt : WorldSocket {
 			}
 		}
 	}
+
 	#region Socket Object Methods
 
 	public override void ReceiveInput (WorldObject worldObject) {
