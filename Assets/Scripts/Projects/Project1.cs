@@ -29,12 +29,12 @@ public class Project1 : ProjectTemplate {
 		 */
 		// START HERE:	Replace all code to the right hand sign of the "=" sign (called an "assignment operator") with the correct values
 
-		color = Color.blue;
-		count = 3;
+		color = default(Color);
+		count = default(int);
 		materials = default(string);
 		shipping = default(string);
 		isSealed = default(bool);
-		beltSpeed = 1.0f;
+		beltSpeed = default(float);
 
 		// END HERE
 		/*
