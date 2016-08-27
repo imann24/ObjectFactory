@@ -34,4 +34,13 @@ public class FactoryObjectDescriptorV1 : FactoryObjectDescriptor {
 	public override int GetHashCode () {
 		return base.GetHashCode ();
 	}
+
+	public override string ToString () {
+		return string.Format ("{1}: {2}{0}{3}: {4}{0}{5}: {6}{0}{7}: {8}",
+			SimpleQuota.ITEM_DIVIDER_CHAR,
+			FactoryObject.COLOR_TAG, ColorUtil.ToString(Color),
+			FactoryObject.MATERIALS_TAG, Materials,
+			FactoryObject.SHIPPING_TAG, Shipping,
+			FactoryObject.SEALED_TAG, IsSealed);
+	}
 }

@@ -12,6 +12,6 @@ public abstract class Controller : MonoBehaviour {
 	}
 
 	protected virtual void Init () {
-
+		// NOTHING
 	}
 }

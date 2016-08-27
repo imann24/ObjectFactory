@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class FactoryObject : WorldObject {
+
 	public const string SHIPPING_TAG = "Shipping";
 	public const string MATERIALS_TAG = "Materials";
+	public const string SEALED_TAG = "Sealed";
+	public const string COLOR_TAG = "Color";
+
 	FactoryObjectDescriptor _descriptor;
 	public FactoryObjectDescriptor Descriptor {
 		get {

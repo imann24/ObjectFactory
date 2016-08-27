@@ -24,6 +24,6 @@ public class SimpleQuota : Quota {
 	}
 
 	public override string ToString () {
-		return string.Format("{0}{2}Amount: {1}", descriptor.ToString(), ITEM_DIVIDER_CHAR, count);
+		return string.Format("{0}{1}Amount: {2}", descriptor.ToString(), ITEM_DIVIDER_CHAR, count);
 	}
 }
