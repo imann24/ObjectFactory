@@ -8,6 +8,7 @@ using System.Collections;
 
 public class MessageBehaviour : UIBehaviour {
 	const float MESSAGE_HEIGHT = 50;
+	const float SCROLL_TO_TOP = 1;
 
 	public UnityEngine.UI.Text Title;
 	public Transform ScrollViewContent;
@@ -18,6 +19,7 @@ public class MessageBehaviour : UIBehaviour {
 		foreach (string line in message.Contents) {
 			AddScrollViewRow(line);
 		}
+		GetComponentInChildren<UnityEngine.UI.Scrollbar>().value = SCROLL_TO_TOP;
 	}
 		
 	public void Close () {

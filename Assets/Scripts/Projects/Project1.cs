@@ -60,6 +60,6 @@ public class Project1 : ProjectTemplate {
 
 	// Use this for initialization
 	void Start () {
-		SetupFactoryObjects();
+		FactoryController.SubscribeRunFactoryAction(SetupFactoryObjects);
 	}
 }

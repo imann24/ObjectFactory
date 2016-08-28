@@ -1,6 +1,6 @@
 ﻿/*
  * Author(s): Isaiah Mann
- * Description: 
+ * Description: Describes the requirements for a simple factory's production
  */
 
 public class SimpleQuota : Quota {
@@ -24,6 +24,6 @@ public class SimpleQuota : Quota {
 	}
 
 	public override string ToString () {
-		return string.Format("{0}{1}Amount: {2}", descriptor.ToString(), ITEM_DIVIDER_CHAR, count);
+		return string.Format("Amount: {2}{1}{0}", descriptor.ToString(), ITEM_DIVIDER_CHAR, count);
 	}
 }
