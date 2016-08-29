@@ -19,7 +19,7 @@ public class FactoryController : Controller {
 	void Awake () {
 		Instance = this;
 		if (!ShouldStartActive) {
-			
+			SetConveyorBeltSpeeds(0);		
 		}
 	}
 
@@ -59,8 +59,19 @@ public class FactoryController : Controller {
 		return areQuotasSatisfied;
 	}
 
+	public bool BeltsMoving () {
+		bool anyBeltMoving = false;
+		foreach (ConveyorBeltController beltController in ConveyorBelts) {
+			anyBeltMoving |= beltController.BeltsMoving();
+		}
+		return anyBeltMoving;
+	}
+
 	public void RunFactory () {
-		CallOnRun();	
+		CallOnRun();
+		if (!BeltsMoving()) {
+			MessageController.SendMessageToInstance(MessageUtil.ZeroBeltSpeedMessage);
+		}
 	}
 		
 	void CallOnRun () {

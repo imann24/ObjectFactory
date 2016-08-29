@@ -23,4 +23,12 @@ public class ConveyorBeltController : Controller {
 		base.Init ();
 		belts = GetComponentsInChildren<ConveyorBelt>();
 	}
+
+	public bool BeltsMoving () {
+		float cumulativeBeltSpeed = 0;
+		foreach (ConveyorBelt belt in belts) {
+			cumulativeBeltSpeed += belt.BeltSpeed;
+		}
+		return cumulativeBeltSpeed > 0;
+	}
 }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d9636c691a5a046a6850644e8dcafd33
-timeCreated: 1471234563
+timeCreated: 1472440608
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -693,6 +693,68 @@ TextureImporter:
       - - {x: -63.5, y: 64}
         - {x: -63.5, y: -64}
         - {x: 63.5, y: -64}
+        - {x: 63.5, y: 64}
+    - name: object-factory-spritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 0
+        width: 127
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -63.5, y: 64}
+        - {x: -63.5, y: -64}
+        - {x: 63.5, y: -64}
+        - {x: 63.5, y: 64}
+    - name: object-factory-spritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 0
+        width: 127
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -63.5, y: 64}
+        - {x: -63.5, y: -64}
+        - {x: 63.5, y: -64}
+        - {x: 63.5, y: 64}
+    - name: object-factory-spritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 0
+        width: 127
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -63.5, y: -64}
+        - {x: -59.5, y: -64}
+        - {x: -59.5, y: -62}
+        - {x: -62.5, y: -59}
+        - {x: -63.5, y: -59}
+      - - {x: -43.5, y: 64}
+        - {x: -62.5, y: 34}
+        - {x: -63.5, y: 26}
+        - {x: -63.5, y: -26}
+        - {x: -58.5, y: -39}
+        - {x: -42.5, y: -64}
+        - {x: 54.5, y: -64}
+        - {x: 63.5, y: -37}
+        - {x: 63.5, y: 47}
+        - {x: 42.5, y: 64}
+      - - {x: 59.5, y: 64}
+        - {x: 58.5, y: 63}
+        - {x: 58.5, y: 62}
+        - {x: 62.5, y: 58}
+        - {x: 63.5, y: 58}
         - {x: 63.5, y: 64}
     outline: []
   spritePackingTag: 
