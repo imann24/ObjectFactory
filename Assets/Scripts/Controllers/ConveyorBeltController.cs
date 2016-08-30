@@ -9,6 +9,22 @@ using System.Collections;
 public class ConveyorBeltController : Controller {
 	ConveyorBelt[] belts;
 
+	public bool ObjectsInMotion () {
+		bool hasMovingObject = false;
+		foreach (WorldObject worldObject in GetComponentsInChildren<WorldObject>()) {
+			if (worldObject is WorldSocket && !(worldObject is DropZone)) {
+				hasMovingObject |= ((WorldSocket) worldObject).HasObjects();
+			}
+		}
+		return hasMovingObject;
+	}
+
+	public void SetFactoryController (FactoryController controller) {
+		foreach (WorldObject worldObject in GetComponentsInChildren<WorldObject>()) {
+			worldObject.SetFactoryController(controller);
+		}
+	}
+
 	public void SetBeltSpeed(float beltSpeed) {
 		foreach (ConveyorBelt belt in belts) {
 			belt.SetBeltSpeed(beltSpeed);

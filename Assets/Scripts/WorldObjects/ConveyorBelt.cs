@@ -117,6 +117,10 @@ public class ConveyorBelt : WorldSocket {
 		return InputSenderAvailable() && InputSender.OutputAvailable();
 	}
 		
+	public override bool HasObjects () {
+		return objectsOnBelt.Count > 0;
+	}
+
 	#endregion
 
 	public void StartMovement () {

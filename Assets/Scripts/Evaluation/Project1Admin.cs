@@ -7,6 +7,7 @@ public class Project1Admin : ProjectAdmin {
 
 	void Start () {
 		MessageController.SendMessageToInstance(new QuotaMessage(new SimpleQuota(GetTarget(), COUNT)));
+		FactoryController.InitInstancesWithQuotas(new Quota[]{new SimpleQuota(GetTarget(), COUNT)});
 	}
 
 	public FactoryObjectDescriptorV1 GetTarget () {

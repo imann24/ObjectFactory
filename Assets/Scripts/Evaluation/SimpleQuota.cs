@@ -12,7 +12,7 @@ public class SimpleQuota : Quota {
 		this.count = count;
 	}
 
-	public override bool CheckSatisfied (object[] arguments) {
+	public override bool CheckSatisfied (params object[] arguments) {
 		try {
 			FactoryObjectDescriptorV1 argumentDescriptor = (FactoryObjectDescriptorV1) arguments[0];
 			int argumentCount = (int) arguments[1];

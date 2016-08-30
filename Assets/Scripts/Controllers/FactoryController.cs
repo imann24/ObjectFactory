@@ -41,6 +41,12 @@ public class FactoryController : Controller {
 		}
 	}
 
+	public static void InitInstancesWithQuotas (Quota[] quotas) {
+		if (Instance) {
+			Instance.InitWithQuotas(quotas);
+		}
+	}
+
 	public void InitWithQuotas (Quota[] quotas) {
 		this.quotas = quotas;
 	}
@@ -66,17 +72,50 @@ public class FactoryController : Controller {
 		}
 		return anyBeltMoving;
 	}
+		
+	public bool CheckQuotasForDropZone (DropZone dropZone) {
+		System.Collections.Generic.Dictionary<FactoryObjectDescriptorV1, int> report = dropZone.GetFactoryObjectDescriptorV1Report();
+		bool areAllQuotasSatisfied = true;
+		foreach (Quota quota in quotas) {
+			bool isCurrentQuotaSatisfied = false;
+			if (quota is SimpleQuota) { // Currently only supports simple quota
+				foreach (FactoryObjectDescriptorV1 descriptor in report.Keys) {
+					isCurrentQuotaSatisfied |= quota.CheckSatisfied(descriptor, report[descriptor]);
+				}
+			}
+			areAllQuotasSatisfied &= isCurrentQuotaSatisfied;
+		}
+		if (!ObjectsInMotion()) {
+			MessageController.SendMessageToInstance(MessageUtil.InsufficentItemsMessage);
+		}
+		return areAllQuotasSatisfied;
+	}
+
+	public bool ObjectsInMotion () {
+		bool isObjectInMotion = false;
+		foreach (ConveyorBeltController beltController in ConveyorBelts) {
+			isObjectInMotion |= beltController.ObjectsInMotion();
+		}
+		return isObjectInMotion;
+	}
 
 	public void RunFactory () {
-		CallOnRun();
+		setFactoryController();
+		callOnRun();
 		if (!BeltsMoving()) {
 			MessageController.SendMessageToInstance(MessageUtil.ZeroBeltSpeedMessage);
 		}
 	}
 		
-	void CallOnRun () {
+	void callOnRun () {
 		if (onRun != null) {
 			onRun();
+		}
+	}
+
+	void setFactoryController () {
+		foreach (ConveyorBeltController controller in ConveyorBelts) {
+			controller.SetFactoryController(this);
 		}
 	}
 }

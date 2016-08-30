@@ -21,7 +21,7 @@ public class Project1 : ProjectTemplate {
 	bool isSealed;
 	float beltSpeed;
 
-	void SetupFactoryObjects () {
+	void setupFactoryObjects () {
 		/*
 		 * 
 		 * 
@@ -43,10 +43,10 @@ public class Project1 : ProjectTemplate {
 		 * 
 		 */
 		BeltController.SetBeltSpeed(beltSpeed);
-		StartCoroutine(SpawnFactoryObjects());
+		StartCoroutine(spawnFactoryObjects());
 	}
-
-	IEnumerator SpawnFactoryObjects () {
+		
+	IEnumerator spawnFactoryObjects () {
 		yield return new WaitForSeconds(WAIT_TIME);
 		for (int i = 0; i < count; i++) {
 			FactoryObjectDescriptorV1 descriptor = new FactoryObjectDescriptorV1(color, materials, shipping, isSealed);
@@ -57,9 +57,9 @@ public class Project1 : ProjectTemplate {
 			yield return new WaitForSeconds(WAIT_TIME);
 		}
 	}
-
+		
 	// Use this for initialization
 	void Start () {
-		FactoryController.SubscribeRunFactoryAction(SetupFactoryObjects);
+		FactoryController.SubscribeRunFactoryAction(setupFactoryObjects);
 	}
 }

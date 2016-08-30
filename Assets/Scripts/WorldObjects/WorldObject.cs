@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class WorldObject : MonoBehaviour {
+	protected FactoryController factoryController;
 	protected bool active = false;
 
 	// Use this for initialization
@@ -11,6 +12,10 @@ public class WorldObject : MonoBehaviour {
 
 	void Start () {
 		init();
+	}
+
+	public void SetFactoryController (FactoryController controller) {
+		this.factoryController = controller;
 	}
 
 	virtual protected void init () {

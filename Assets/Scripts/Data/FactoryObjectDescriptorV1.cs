@@ -32,7 +32,14 @@ public class FactoryObjectDescriptorV1 : FactoryObjectDescriptor {
 	}
 
 	public override int GetHashCode () {
-		return base.GetHashCode ();
+		int hashCode = this.Color.GetHashCode() + this.IsSealed.GetHashCode();
+		if (this.Materials != null) {
+			hashCode += this.Materials.GetHashCode();
+		}
+		if (this.Shipping != null) {
+			hashCode += this.Shipping.GetHashCode();
+		}
+		return hashCode;
 	}
 
 	public override string ToString () {

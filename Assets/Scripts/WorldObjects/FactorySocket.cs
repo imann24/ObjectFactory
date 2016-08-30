@@ -10,6 +10,10 @@ using System.Collections.Generic;
 public class FactorySocket : WorldSocket {
 	Queue<WorldObject> storedObjects = new Queue<WorldObject>();
 
+	public override bool HasObjects () {
+		return storedObjects.Count > 0;
+	}
+
 	public override void ReceiveInput (WorldObject worldObject) {
 		storedObjects.Enqueue(worldObject);
 		worldObject.transform.SetParent(transform);

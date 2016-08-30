@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class FactoryObject : WorldObject {
+	const string NONE_TAG_VALUE = "None";
 
 	public const string SHIPPING_TAG = "Shipping";
 	public const string MATERIALS_TAG = "Materials";
@@ -37,9 +38,27 @@ public class FactoryObject : WorldObject {
 		_beltPosition = 0;
 	}
 
+	public FactoryObjectDescriptorV1 GetV1Descriptor () {
+		return new FactoryObjectDescriptorV1(spriteRenderer.color, Tags[MATERIALS_TAG], Tags[SHIPPING_TAG], IsSealed);
+	}
+
 	protected override void setReferences () {
 		base.setReferences();
 		spriteRenderer = GetComponent<SpriteRenderer>();
+	}
+
+	protected override void init () {
+		base.init ();
+		initStandardTags();
+	}
+
+	void initStandardTags () {
+		if (!Tags.ContainsKey(SHIPPING_TAG)) {
+			Tags.Add(SHIPPING_TAG, NONE_TAG_VALUE);
+		}
+		if (!Tags.ContainsKey(MATERIALS_TAG)) {
+			Tags.Add(MATERIALS_TAG, NONE_TAG_VALUE);
+		}
 	}
 
 	void setDescriptor (FactoryObjectDescriptor descriptor) {

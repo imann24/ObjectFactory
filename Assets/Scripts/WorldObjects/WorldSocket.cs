@@ -10,6 +10,10 @@ public class WorldSocket : WorldObject {
 	public WorldSocket InputSender;
 	public WorldSocket OuputReceiver;
 
+	public virtual bool HasObjects () {
+		return false;
+	}
+
 	public virtual bool InputSenderAvailable () {
 		return InputSender != null && InputSender.SupportsOuput();
 	}
