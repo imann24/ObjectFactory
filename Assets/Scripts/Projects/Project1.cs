@@ -23,37 +23,29 @@ public class Project1 : ProjectTemplate {
 
 	void setupFactoryObjects () {
 		/*
-		 * 
-		 * 
-		 * 
+		 *
+		 *
+		 *
 		 */
 		// START HERE:	Replace all code to the right hand sign of the "=" sign (called an "assignment operator") with the correct values
 
-//		color = default(Color);
-//		count = default(int);
-//		materials = default(string);
-//		shipping = default(string);
-//		isSealed = default(bool);
-//		beltSpeed = default(float);
-
-		color = Color.red;
-		count = 3;
-		materials = FactoryTagController.FRAGILE;
-		shipping = FactoryTagController.PRIORITY;
-		isSealed = true;
-		beltSpeed = 1f;
-
+		color = default(Color);
+		count = default(int);
+		materials = default(string);
+		shipping = default(string);
+		isSealed = default(bool);
+		beltSpeed = default(float);
 
 		// END HERE
 		/*
-		 * 
-		 * 
-		 * 
+		 *
+		 *
+		 *
 		 */
 		BeltController.SetBeltSpeed(beltSpeed);
 		StartCoroutine(spawnFactoryObjects());
 	}
-		
+
 	IEnumerator spawnFactoryObjects () {
 		yield return new WaitForSeconds(WAIT_TIME);
 		for (int i = 0; i < count; i++) {
@@ -65,7 +57,7 @@ public class Project1 : ProjectTemplate {
 			yield return new WaitForSeconds(WAIT_TIME);
 		}
 	}
-		
+
 	// Use this for initialization
 	void Start () {
 		FactoryController.SubscribeRunFactoryAction(setupFactoryObjects);
