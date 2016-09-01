@@ -9,6 +9,12 @@ using System.Collections;
 public class ConveyorBeltController : Controller {
 	ConveyorBelt[] belts;
 
+	public void ClearDropZones () {
+		foreach (DropZone dropZone in GetComponentsInChildren<DropZone>()) {
+			dropZone.Clear();
+		}
+	}
+
 	public bool ObjectsInMotion () {
 		bool hasMovingObject = false;
 		foreach (WorldObject worldObject in GetComponentsInChildren<WorldObject>()) {

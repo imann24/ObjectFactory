@@ -76,6 +76,7 @@ public class FactoryController : Controller {
 	public bool CheckQuotasForDropZone (DropZone dropZone) {
 		System.Collections.Generic.Dictionary<FactoryObjectDescriptorV1, int> report = dropZone.GetFactoryObjectDescriptorV1Report();
 		bool areAllQuotasSatisfied = true;
+		bool objectsInMotion = ObjectsInMotion();
 		foreach (Quota quota in quotas) {
 			bool isCurrentQuotaSatisfied = false;
 			if (quota is SimpleQuota) { // Currently only supports simple quota
@@ -84,9 +85,12 @@ public class FactoryController : Controller {
 				}
 			}
 			areAllQuotasSatisfied &= isCurrentQuotaSatisfied;
-		}
-		if (!ObjectsInMotion()) {
-			MessageController.SendMessageToInstance(MessageUtil.InsufficentItemsMessage);
+			if (!isCurrentQuotaSatisfied && !objectsInMotion && quota is SimpleQuota) {
+				foreach (FactoryObjectDescriptorV1 descriptor in report.Keys) {
+					MessageController.SendMessageToInstance (
+						MessageUtil.GetSimpleQuotaMismatchMessage(quota as SimpleQuota, new SimpleQuota(descriptor, report[descriptor])));
+				}
+			}
 		}
 		return areAllQuotasSatisfied;
 	}
@@ -101,9 +105,16 @@ public class FactoryController : Controller {
 
 	public void RunFactory () {
 		setFactoryController();
+		ClearDropZones();
 		callOnRun();
 		if (!BeltsMoving()) {
 			MessageController.SendMessageToInstance(MessageUtil.ZeroBeltSpeedMessage);
+		}
+	}
+
+	public void ClearDropZones () {
+		foreach (ConveyorBeltController controller in ConveyorBelts) {
+			controller.ClearDropZones();
 		}
 	}
 		

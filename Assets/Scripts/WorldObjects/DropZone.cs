@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class DropZone : WorldSocket {
 	const float CAPTURED_SPRITE_SCALE = 0.5f;
@@ -53,6 +54,16 @@ public class DropZone : WorldSocket {
 			}
 		}
 		return report;
+	}
+
+	public void Clear () {
+		WorldObject[] storedObjectsArr = storedObjects.ToArray();
+		for (int i = 0; i < storedObjectsArr.Length; i++) {
+			Destroy(storedObjectsArr[i].gameObject);
+		}
+		storedObjects.Clear();
+		updateInventoryCount();
+		offset = Vector3.zero;
 	}
 
 	void collectObject (WorldObject worldObject) {

@@ -6,7 +6,16 @@
 public class SimpleQuota : Quota {
 	FactoryObjectDescriptorV1 descriptor;
 	int count;
-
+	public FactoryObjectDescriptorV1 IDescriptor {
+		get {
+			return descriptor;
+		}
+	}
+	public int ICount {
+		get {
+			return count;
+		}
+	}
 	public SimpleQuota (FactoryObjectDescriptorV1 descriptor, int count) {
 		this.descriptor = descriptor;
 		this.count = count;
@@ -24,6 +33,6 @@ public class SimpleQuota : Quota {
 	}
 
 	public override string ToString () {
-		return string.Format("Amount: {2}{1}{0}", descriptor.ToString(), ITEM_DIVIDER_CHAR, count);
+		return string.Format("{3}: {2}{1}{0}", descriptor.ToString(), ITEM_DIVIDER_CHAR, count, AMOUNT);
 	}
 }

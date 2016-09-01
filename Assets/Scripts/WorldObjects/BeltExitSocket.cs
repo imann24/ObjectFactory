@@ -10,7 +10,7 @@ public class BeltExitSocket : FactorySocket {
 	public override void ReceiveInput (WorldObject worldObject) {
 		base.ReceiveInput (worldObject);
 		if (OuputReceiverAvailable()) {
-			OuputReceiver.ReceiveInput(worldObject);
+			OuputReceiver.ReceiveInput(SendOuput());
 		}
 	}
 }

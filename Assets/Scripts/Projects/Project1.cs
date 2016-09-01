@@ -29,12 +29,20 @@ public class Project1 : ProjectTemplate {
 		 */
 		// START HERE:	Replace all code to the right hand sign of the "=" sign (called an "assignment operator") with the correct values
 
-		color = default(Color);
-		count = default(int);
-		materials = default(string);
-		shipping = default(string);
-		isSealed = default(bool);
-		beltSpeed = default(float);
+//		color = default(Color);
+//		count = default(int);
+//		materials = default(string);
+//		shipping = default(string);
+//		isSealed = default(bool);
+//		beltSpeed = default(float);
+
+		color = Color.red;
+		count = 3;
+		materials = FactoryTagController.FRAGILE;
+		shipping = FactoryTagController.PRIORITY;
+		isSealed = true;
+		beltSpeed = 1f;
+
 
 		// END HERE
 		/*
