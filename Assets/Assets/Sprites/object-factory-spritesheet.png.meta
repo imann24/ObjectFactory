@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d9636c691a5a046a6850644e8dcafd33
-timeCreated: 1472833409
+timeCreated: 1472837406
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -50,6 +50,7 @@ TextureImporter:
     21300086: object-factory-spritesheet_43
     21300088: object-factory-spritesheet_44
     21300090: object-factory-spritesheet_45
+    21300092: object-factory-spritesheet_46
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -818,6 +819,21 @@ TextureImporter:
         - {x: 75.5, y: -21}
         - {x: 82.5, y: -3}
         - {x: 82.5, y: 11}
+    - name: object-factory-spritesheet_46
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 0
+        width: 128
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 32}
+        - {x: -64, y: -32}
+        - {x: 64, y: -32}
+        - {x: 64, y: 32}
     outline: []
   spritePackingTag: 
   userData: 

@@ -9,7 +9,7 @@ using System.Collections;
 public class Sorter : FactorySocket {
 	const int INVALID_INDEX = -1;
 
-	public delegate int DetermineIndexAction();
+	public delegate int DetermineIndexAction(WorldObject objectToSort, WorldSocket[] possibleOuputs);
 	DetermineIndexAction determineIndex;
 
 	public WorldSocket[] PossibleOutputs;
@@ -18,8 +18,8 @@ public class Sorter : FactorySocket {
 		determineIndex += determineIndexAction;
 	}
 
-	public WorldSocket ChooseOuput () {
-		int index = callDetermineIndex();
+	public WorldSocket ChooseOuput (WorldObject objectToSend) {
+		int index = callDetermineIndex(objectToSend);
 		if (index == INVALID_INDEX || !IntUtil.InRange(index, 0, PossibleOutputs.Length)) {
 			return null;
 		} else {
@@ -27,9 +27,9 @@ public class Sorter : FactorySocket {
 		}
 	}
 
-	int callDetermineIndex () {
+	int callDetermineIndex (WorldObject objectToSort) {
 		if (determineIndex != null) {
-			return determineIndex();
+			return determineIndex(objectToSort, PossibleOutputs);
 		} else {
 			return INVALID_INDEX;
 		}
