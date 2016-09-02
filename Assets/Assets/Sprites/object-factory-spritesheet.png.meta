@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d9636c691a5a046a6850644e8dcafd33
-timeCreated: 1472440608
+timeCreated: 1472833409
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -48,6 +48,8 @@ TextureImporter:
     21300082: object-factory-spritesheet_41
     21300084: object-factory-spritesheet_42
     21300086: object-factory-spritesheet_43
+    21300088: object-factory-spritesheet_44
+    21300090: object-factory-spritesheet_45
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -756,6 +758,66 @@ TextureImporter:
         - {x: 62.5, y: 58}
         - {x: 63.5, y: 58}
         - {x: 63.5, y: 64}
+    - name: object-factory-spritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 1
+        width: 126
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59, y: 62.5}
+        - {x: -63, y: 59.5}
+        - {x: -63, y: -4.5}
+        - {x: -61, y: -5.5}
+        - {x: -63, y: -10.5}
+        - {x: -63, y: -24.5}
+        - {x: -62, y: -26.5}
+        - {x: -53, y: -25.5}
+        - {x: -37, y: -62.5}
+        - {x: -14, y: -62.5}
+        - {x: 63, y: -8.5}
+        - {x: 63, y: 16.5}
+        - {x: 27, y: 62.5}
+    - name: object-factory-spritesheet_44
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 0
+        width: 128
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 49}
+        - {x: -64, y: -39}
+        - {x: -57, y: -49}
+        - {x: 64, y: -49}
+        - {x: 64, y: 30}
+        - {x: 60, y: 49}
+    - name: object-factory-spritesheet_45
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 0
+        width: 165
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5.5, y: 32}
+        - {x: -63.5, y: 32}
+        - {x: -82.5, y: 22}
+        - {x: -82.5, y: -32}
+        - {x: 59.5, y: -32}
+        - {x: 75.5, y: -21}
+        - {x: 82.5, y: -3}
+        - {x: 82.5, y: 11}
     outline: []
   spritePackingTag: 
   userData: 
