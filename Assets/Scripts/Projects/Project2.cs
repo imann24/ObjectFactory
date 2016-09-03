@@ -13,16 +13,32 @@ public class Project2 : ProjectTemplate, IDelegateSortingRule {
 		if (objectToSort is FactoryObject) {
 			FactoryObject factoryObject = objectToSort as FactoryObject;
 			FactoryObjectDescriptorV1 descriptor = factoryObject.GetV1Descriptor();
-			if (descriptor.Color == Color.red) {
+			Color color = descriptor.Color;
+
+			/*
+			 * 
+			 * 
+			 * 
+			 */
+			// START HERE Check the value of "color" against the colors that should be sorted into each shipping method
+
+			if (default(bool)) {
 				// SORT INTO THE PLANE LANE
 				return 0;
-			} else if (descriptor.Color == Color.blue || descriptor.Color == Color.yellow) {
+			} else if (default(bool)) {
 				// SORT INTO THE BOAT LANE
 				return 1;
 			} else {
 				// SORT INTO THE GROUND LANE
 				return 2;
 			}
+
+			// END HERE
+			/*
+			 * 
+			 * 
+			 * 
+			 */
 		} else {
 			return DEFAULT_INDEX;
 		}

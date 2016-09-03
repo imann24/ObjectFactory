@@ -12,6 +12,10 @@ public class Project2Admin : ProjectAdmin {
 
 	void Start () {
 		FactoryController.SubscribeRunFactoryAction(spawnFactoryObjects);
+		MessageController.SendMessageToInstance(MessageUtil.GetShippingInstructions(
+			ColorUtil.ToString(Color.red),
+			string.Format("{1} {0} {2}", MessageUtil.AND, ColorUtil.ToString(Color.blue), ColorUtil.ToString(Color.yellow)),
+			"Other Colors"));
 	}
 
 	void spawnFactoryObjects () {
