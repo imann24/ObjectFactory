@@ -356,14 +356,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!1 &517937348
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 11
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 517937350}
   - 114: {fileID: 517937349}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Project1Admin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &517937349
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 11
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 517937348}
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!4 &517937350
 Transform:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 11
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 517937348}

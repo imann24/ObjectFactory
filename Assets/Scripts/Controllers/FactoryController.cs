@@ -18,6 +18,9 @@ public class FactoryController : Controller {
 
 	void Awake () {
 		Instance = this;
+	}
+
+	void Start () {
 		if (!ShouldStartActive) {
 			SetConveyorBeltSpeeds(0);		
 		}
