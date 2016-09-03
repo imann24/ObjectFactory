@@ -26,7 +26,8 @@ public class WorldSocket : WorldObject {
 		return false;
 	}
 
-	public virtual bool OutputAvailable () {
+	// Checks whether ouput is availalbe to send to that particular socket
+	public virtual bool OutputAvailable (WorldSocket availableFor) {
 		return false;
 	}
 
@@ -49,6 +50,10 @@ public class WorldSocket : WorldObject {
 
 	protected virtual void processInput (WorldObject worldObject)  {
 		// Do nothing
+	}
+
+	public virtual WorldObject PeekOuput () {
+		return null;
 	}
 
 	public virtual WorldObject SendOuput () {

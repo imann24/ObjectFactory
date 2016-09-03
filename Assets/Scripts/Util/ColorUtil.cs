@@ -9,6 +9,12 @@ public static class ColorUtil {
 	const string YELLOW_KEY = "Yellow";
 	const string GREEN_KEY = "Green";
 
+	public static UnityEngine.Color[] Colors = new UnityEngine.Color[]{
+		UnityEngine.Color.red, 
+		UnityEngine.Color.blue, 
+		UnityEngine.Color.yellow, 
+		UnityEngine.Color.green};
+	
 	public static string ToString (UnityEngine.Color color) {
 		if (color == UnityEngine.Color.red) {
 			return RED_KEY;
@@ -21,5 +27,9 @@ public static class ColorUtil {
 		} else {
 			return color.ToString();
 		}
+	}
+
+	public static UnityEngine.Color RandomColor () {
+		return ArrayUtil.Random(Colors);
 	}
 }

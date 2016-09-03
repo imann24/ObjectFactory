@@ -9,24 +9,28 @@ using System.Collections;
 public class SortingRule : WorldObject {
 	protected const int DEFAULT_INDEX = 0;
 	protected Sorter.DetermineIndexAction determineSort;
+	protected Sorter.DetermineIndexAction peekSort;
+	protected Sorter.DetermineIndexAction tickSort;
 
 	protected override void setReferences () {
-		assignAction();
+		assignActions();
 	}
 
 	protected override void init () {
 		subscribeAction();
 	}
 
-	protected virtual void assignAction () {
+	protected virtual void assignActions () {
 		determineSort = defaultSort;
+		peekSort = defaultSort;
+		tickSort = defaultSort;
 	}
 
 	void subscribeAction () {
 		Sorter sorter;
 		// Meant to be a null check (assignment is intentional)
 		if (sorter = GetComponent<Sorter>()) {
-			sorter.SubscribeDetermineIndex(determineSort);
+			sorter.SubscribeDetermineIndex(determineSort, peekSort, tickSort);
 		}
 	}
 

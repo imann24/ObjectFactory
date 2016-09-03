@@ -20,10 +20,22 @@ public class FactorySocket : WorldSocket {
 	}
 
 	public override WorldObject SendOuput () {
-		return storedObjects.Dequeue();
+		if (storedObjects.Count > 0) {
+			return storedObjects.Dequeue();
+		} else {
+			return null;
+		}
 	}
 
-	public override bool OutputAvailable () {
+	public override WorldObject PeekOuput () {
+		if (storedObjects.Count > 0) {
+			return storedObjects.Peek();
+		} else {
+			return null;
+		}
+	}
+
+	public override bool OutputAvailable (WorldSocket availableFor) {
 		return storedObjects.Count > 0;
 	}
 

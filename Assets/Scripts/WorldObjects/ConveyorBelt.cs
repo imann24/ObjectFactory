@@ -86,7 +86,7 @@ public class ConveyorBelt : WorldSocket {
 	}
 
 	protected override WorldObject getInput () {
-		if (entrance.OutputAvailable()) {
+		if (entrance.OutputAvailable(this)) {
 			return entrance.SendOuput();
 		} else {
 			return base.getInput();
@@ -94,7 +94,7 @@ public class ConveyorBelt : WorldSocket {
 	}
 		
 	public override WorldObject SendOuput () {
-		if (exit.OutputAvailable()) {
+		if (exit.OutputAvailable(this)) {
 			return exit.SendOuput();
 		} else {
 			return base.SendOuput();
@@ -109,12 +109,12 @@ public class ConveyorBelt : WorldSocket {
 		return true;
 	}
 
-	public override bool OutputAvailable () {
-		return exit.OutputAvailable();
+	public override bool OutputAvailable (WorldSocket availableFor) {
+		return exit.OutputAvailable(availableFor);
 	}
 
 	public override bool InputAvailable () {
-		return InputSenderAvailable() && InputSender.OutputAvailable();
+		return InputSenderAvailable() && InputSender.OutputAvailable(this);
 	}
 		
 	public override bool HasObjects () {
@@ -182,7 +182,7 @@ public class ConveyorBelt : WorldSocket {
 		if (InputAvailable()) {
 			receiveInputFromSender();
 		}
-		if (entrance.OutputAvailable()) {
+		if (entrance.OutputAvailable(this)) {
 			processInput(getInput());
 		}
 	}

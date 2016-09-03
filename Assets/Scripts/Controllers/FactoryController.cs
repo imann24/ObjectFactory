@@ -7,7 +7,10 @@ using UnityEngine;
 using System.Collections;
 
 public class FactoryController : Controller {
+	const float SPAWN_OFFSET = 10f;
+
 	public bool ShouldStartActive;
+	public GameObject FactoryObjectPrefab;
 
 	static FactoryController Instance;
 
@@ -77,6 +80,10 @@ public class FactoryController : Controller {
 	}
 		
 	public bool CheckQuotasForDropZone (DropZone dropZone) {
+		if (quotas == null) {
+			return false;
+		}
+
 		System.Collections.Generic.Dictionary<FactoryObjectDescriptorV1, int> report = dropZone.GetFactoryObjectDescriptorV1Report();
 		bool areAllQuotasSatisfied = true;
 		bool objectsInMotion = ObjectsInMotion();
@@ -121,6 +128,29 @@ public class FactoryController : Controller {
 		}
 	}
 		
+	public static void AddToBeltByDescriptor (int beltIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn) {
+		if (Instance) {	
+			Instance.StartAddBeltByDescriptor(beltIndex, descriptors, delayBeforeEachSpawn);
+		}
+	}
+
+	void StartAddBeltByDescriptor (int beltIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn) {
+		StartCoroutine(RunAddBeltByDescriptor(beltIndex, descriptors, delayBeforeEachSpawn));
+	}
+
+	IEnumerator RunAddBeltByDescriptor (int beltIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn) {
+		if (IntUtil.InRange(beltIndex, descriptors.Length)) {
+			yield return new WaitForSeconds(delayBeforeEachSpawn);
+			for (int i = 0; i < descriptors.Length; i++) {
+				GameObject factoryObject = (GameObject) Instantiate(FactoryObjectPrefab, Vector3.up * SPAWN_OFFSET, Quaternion.identity);
+				FactoryObject factoryObjectController = factoryObject.GetComponent<FactoryObject>();
+				factoryObjectController.Descriptor = descriptors[i];
+				ConveyorBelts[beltIndex].AddToBelt(factoryObjectController);
+				yield return new WaitForSeconds(delayBeforeEachSpawn);
+			}
+		}
+	}
+
 	void callOnRun () {
 		if (onRun != null) {
 			onRun();

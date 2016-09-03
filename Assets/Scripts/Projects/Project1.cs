@@ -9,8 +9,6 @@ using System.Collections;
 public class Project1 : ProjectTemplate {
 	const float WAIT_TIME = 0.5f;
 	const float SPAWN_OFFSET = 10f;
-
-	public GameObject FactoryObjectPrefab;
 	public ConveyorBeltController BeltController;
 
 	// Tunable Variables:
@@ -21,7 +19,7 @@ public class Project1 : ProjectTemplate {
 	bool isSealed;
 	float beltSpeed;
 
-	void setupFactoryObjects () {
+	protected override void setupFactory () {
 		/*
 		 *
 		 *
@@ -35,7 +33,7 @@ public class Project1 : ProjectTemplate {
 		shipping = default(string);
 		isSealed = default(bool);
 		beltSpeed = default(float);
-
+	
 		// END HERE
 		/*
 		 *
@@ -56,10 +54,5 @@ public class Project1 : ProjectTemplate {
 			BeltController.AddToBelt(factoryObjectController);
 			yield return new WaitForSeconds(WAIT_TIME);
 		}
-	}
-
-	// Use this for initialization
-	void Start () {
-		FactoryController.SubscribeRunFactoryAction(setupFactoryObjects);
 	}
 }
