@@ -1265,9 +1265,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2139156382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e83dff90a68243d7825c84f7d966645, type: 3}
+  m_Script: {fileID: 11500000, guid: 463f3211c98bd42e6a5ae8d73cecac28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DelegateSortingRuleObject: {fileID: 1350316656}
 --- !u!114 &2139156384 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11499940, guid: e68decbf54a5249349f04ec08d00a676,

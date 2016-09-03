@@ -11,14 +11,14 @@ public abstract class ProjectTemplate : MonoBehaviour {
 	public GameObject FactoryObjectPrefab;
 
 	protected virtual void Awake () {
-		Init();
+		init();
 	}
 
 	protected virtual void Start () {
 		FactoryController.SubscribeRunFactoryAction(setupFactory);
 	}
 
-	protected virtual void Init () {
+	protected virtual void init () {
 		ProjectID = gameObject.name;
 	}
 
