@@ -1,6 +1,6 @@
 ﻿/*
  * Author(s): Isaiah Mann
- * Description: 
+ * Description: Describes a certain quota that must be met in the factory
  */
 
 public abstract class Quota {

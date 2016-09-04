@@ -16,6 +16,7 @@ public class SimpleQuota : Quota {
 			return count;
 		}
 	}
+
 	public SimpleQuota (FactoryObjectDescriptorV1 descriptor, int count) {
 		this.descriptor = descriptor;
 		this.count = count;
