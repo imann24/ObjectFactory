@@ -53,4 +53,12 @@ public class ConveyorBeltController : Controller {
 		}
 		return cumulativeBeltSpeed > 0;
 	}
+
+	public bool CheckRequirements () {
+		bool requirementsSatisfied = true;
+		foreach (FactoryRequirement requirement in GetComponentsInChildren<FactoryRequirement>()) {
+			requirementsSatisfied &= requirement.CheckSatisifed();
+		}
+		return requirementsSatisfied;
+	}
 }
