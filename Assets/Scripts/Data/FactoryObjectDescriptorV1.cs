@@ -31,6 +31,14 @@ public class FactoryObjectDescriptorV1 : FactoryObjectDescriptor {
 		}
 	}
 
+	public int CheckSimilariaties (FactoryObjectDescriptorV1 otherDescriptor) {
+		int similaritities = this.Color == otherDescriptor.Color ? 1 : 0;
+		similaritities += this.Materials == otherDescriptor.Materials ? 1 : 0;
+		similaritities += this.Shipping == otherDescriptor.Shipping ? 1 : 0;
+		similaritities += this.IsSealed == otherDescriptor.IsSealed ? 1 : 0;
+		return similaritities;
+	}
+
 	public override int GetHashCode () {
 		int hashCode = this.Color.GetHashCode() + this.IsSealed.GetHashCode();
 		if (this.Materials != null) {

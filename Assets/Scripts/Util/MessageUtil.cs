@@ -4,14 +4,15 @@
  */
 
 public static class MessageUtil {
-	public const string QUOTA_FAILED = "Quota Failed";
-	public const string QUOTA_MET = "Quota Met";
+	
 	public const string REQUIREMENTS_FAILED = "Requirements Failed";
 	public const string AND = "and";
 
 	const string SEALED = "Sealed";
 	const string NOT_SEALED = "Not Sealed";
 
+	const string QUOTA = "Quota";
+	const string MET = "MET";
 	const string EXPECTED = "Expected";
 	const string RECEIVED = "Received";
 	const string SATISFIED = "SATISFIED";
@@ -24,19 +25,19 @@ public static class MessageUtil {
 
 	public static Message ZeroBeltSpeedMessage {
 		get {
-			return new Message(QUOTA_FAILED, new string[]{"Belts Not Running", "Conveyor belt speed is set to zero"});
+			return new Message(getQuotaFailed(), new string[]{"Belts Not Running", "Conveyor belt speed is set to zero"});
 		}
 	}
 
 	public static Message InsufficentItemsMessage {
 		get {
-			return new Message(QUOTA_FAILED, new string[]{"Quota count not met"});
+			return new Message(getQuotaFailed(), new string[]{"Quota count not met"});
 		}
 	}
 
 	public static Message QuotaMetMessage {
 		get {
-			return new Message(QUOTA_MET, new string[]{"The factory quota has been meet"});
+			return new Message(getQuotaMet(), new string[]{"The factory quota has been meet"});
 		}
 	}
 
@@ -54,7 +55,13 @@ public static class MessageUtil {
 		string materialsMessage = expectedReceivedString(FactoryObject.MATERIALS_TAG, expected.Materials, received.Materials);
 		string shippingMessage = expectedReceivedString(FactoryObject.SHIPPING_TAG, expected.Shipping, received.Shipping);
 		string isSealedMessage = expectedReceivedString(FactoryObject.SEALED_TAG, expected.IsSealed, received.IsSealed);
-		return new Message(QUOTA_FAILED, new string[]{countMessage, colorMessage, materialsMessage, shippingMessage, isSealedMessage});
+		string title;
+		if (correctQuota.HasQuotaIndex) {
+			title = getQuotaFailed(correctQuota.IQuotaIndex);
+		} else {
+			title = getQuotaFailed();
+		}
+		return new Message(title, new string[]{countMessage, colorMessage, materialsMessage, shippingMessage, isSealedMessage});
 	}
 
 	public static Message GetShippingInstructions (string shipOnAirplane, string shipOnBoat, string shipOnTruck) {
@@ -74,4 +81,27 @@ public static class MessageUtil {
 			expectedValue, receivedValue, expectedValue.Equals(receivedValue) ? SATISFIED : FAILED);
 	}
 
+	static string getQuotaFailed () {
+		return getQuotaFailed(string.Empty);
+	}
+
+	static string getQuotaFailed (int quotaIndex) {
+		return getQuotaFailed(quotaIndex.ToString());
+	}
+
+	static string getQuotaFailed (string quotaIndex) {
+		return string.Format("{0} {1} {2}", QUOTA, quotaIndex, FAILED);
+	}
+
+	static string getQuotaMet () {
+		return getQuotaMet(string.Empty);
+	}
+
+	static string getQuotaMet (int quotaIndex) {
+		return getQuotaMet(quotaIndex.ToString());
+	}
+
+	static string getQuotaMet (string quotaIndex) {
+		return string.Format("{0} {1} {2}", QUOTA, quotaIndex, MET);
+	}
 }

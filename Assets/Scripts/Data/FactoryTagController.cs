@@ -18,7 +18,8 @@ public static class FactoryTagController {
 
 	public const string HAZARDOUS = "Hazardous";
 	public const string FRAGILE = "Fragile";
-	public static string[] MaterialsTags = new string[]{HAZARDOUS, FRAGILE};
+	public const string HEAVY = "Heavy";
+	public static string[] MaterialsTags = new string[]{HAZARDOUS, FRAGILE, HEAVY};
 
 	#endregion
 

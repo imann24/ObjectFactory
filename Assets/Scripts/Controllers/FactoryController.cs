@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class FactoryController : Controller {
 	const float SPAWN_OFFSET = 10f;
@@ -19,6 +20,10 @@ public class FactoryController : Controller {
 	FactoryAction onRun;
 	public ConveyorBeltController[] ConveyorBelts;
 	Quota[] quotas;
+	System.Collections.Generic.Queue<FactoryObjectDescriptor> descriptorQueue = new System.Collections.Generic.Queue<FactoryObjectDescriptor>();
+	int beltIndex = 0;
+	float delayBeforeEachSpawn = 0.5f;
+	IEnumerator delayedAddToBeltCoroutine = null; 
 
 	bool requirementsFailed = false;
 
@@ -86,8 +91,8 @@ public class FactoryController : Controller {
 		if (quotas == null) {
 			return false;
 		}
-
-		System.Collections.Generic.Dictionary<FactoryObjectDescriptorV1, int> report = dropZone.GetFactoryObjectDescriptorV1Report();
+		Dictionary<Quota, FactoryObjectDescriptorV1> closestMatches = new Dictionary<Quota, FactoryObjectDescriptorV1>();
+		Dictionary<FactoryObjectDescriptorV1, int> report = dropZone.GetFactoryObjectDescriptorV1Report();
 		int dropZoneInventoryCount = INVALID_INVENTORY_COUNT;
 		bool areAllQuotasSatisfied = true;
 		bool objectsInMotion = ObjectsInMotion();
@@ -96,6 +101,17 @@ public class FactoryController : Controller {
 			if (quota is SimpleQuota) { // Currently only supports simple quota
 				foreach (FactoryObjectDescriptorV1 descriptor in report.Keys) {
 					isCurrentQuotaSatisfied |= quota.CheckSatisfied(descriptor, report[descriptor]);
+					if (quota is SimpleQuota) {
+						if (closestMatches.ContainsKey(quota)) {
+							SimpleQuota simpleQuota = quota as SimpleQuota;
+							int similarities = simpleQuota.CheckSimilarities(descriptor);
+							if (similarities > simpleQuota.CheckSimilarities(closestMatches[quota])) {
+								closestMatches[quota] = descriptor;
+							}
+						}  else {
+							closestMatches.Add(quota, descriptor);
+						}
+					}
 				}
 			}
 			else if (quota is CountQuota) {
@@ -106,10 +122,9 @@ public class FactoryController : Controller {
 			}
 			areAllQuotasSatisfied &= isCurrentQuotaSatisfied;
 			if (!isCurrentQuotaSatisfied && !objectsInMotion && quota is SimpleQuota) {
-				foreach (FactoryObjectDescriptorV1 descriptor in report.Keys) {
-					MessageController.SendMessageToInstance (
-						MessageUtil.GetSimpleQuotaMismatchMessage(quota as SimpleQuota, new SimpleQuota(descriptor, report[descriptor])));
-				}
+				FactoryObjectDescriptorV1 targetDescriptor = closestMatches[quota];
+				MessageController.SendMessageToInstance (
+					MessageUtil.GetSimpleQuotaMismatchMessage(quota as SimpleQuota, new SimpleQuota(targetDescriptor, report[targetDescriptor])));
 			} 
 		}
 		if (areAllQuotasSatisfied) {
@@ -169,11 +184,33 @@ public class FactoryController : Controller {
 		
 	public static void AddToBeltByDescriptor (int beltIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn) {
 		if (Instance) {	
-			Instance.StartAddBeltByDescriptor(beltIndex, descriptors, delayBeforeEachSpawn);
+			Instance.StartAddToBeltByDescriptor(beltIndex, descriptors, delayBeforeEachSpawn);
 		}
 	}
 
-	void StartAddBeltByDescriptor (int beltIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn) {
+	public static void SetBeltIndexAndSpawnDelay (int beltIndex, float delayBeforeEachSpawn) {
+		if (Instance) {
+			Instance.beltIndex = beltIndex;
+			Instance.delayBeforeEachSpawn = delayBeforeEachSpawn;
+		}
+	}
+
+	public static void AddToBeltByDescriptor (FactoryObjectDescriptor descriptor) {
+		if (Instance) {
+			Instance.descriptorQueue.Enqueue(descriptor);
+			if (Instance.delayedAddToBeltCoroutine == null) {
+				Instance.StartCoroutine(Instance.delayedAddToBeltCoroutine = Instance.DelayedAddBeltToDescriptor());
+			}
+		}
+	}
+
+	IEnumerator DelayedAddBeltToDescriptor () {
+		yield return new WaitForEndOfFrame();
+		StartAddToBeltByDescriptor(this.beltIndex, descriptorQueue.ToArray(), this.delayBeforeEachSpawn);
+		descriptorQueue.Clear();
+	}
+
+	void StartAddToBeltByDescriptor (int beltIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn) {
 		StartCoroutine(RunAddBeltByDescriptor(beltIndex, descriptors, delayBeforeEachSpawn));
 	}
 

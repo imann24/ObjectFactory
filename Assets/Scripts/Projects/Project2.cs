@@ -1,6 +1,6 @@
 ﻿/*
  * Author(s): [Insert Your Name Here], Isaiah Mann
- * Description: The submission script for Project 2
+ * Description: The submission script for Project 2 covering conditional statements
  */
 
 using UnityEngine;

@@ -1,6 +1,6 @@
 ﻿/*
  * Author(s): [Insert Your Name Here], Isaiah Mann
- * Description: The first assignment for CS112-1: Intro to Programming with Unity
+ * Description: The first assignment for CS112-1: Intro to Programming with Unity covering variables
  */
 
 using UnityEngine;
