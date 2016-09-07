@@ -20,6 +20,8 @@ public class FactoryController : Controller {
 	public ConveyorBeltController[] ConveyorBelts;
 	Quota[] quotas;
 
+	bool requirementsFailed = false;
+
 	void Awake () {
 		Instance = this;
 	}
@@ -114,7 +116,11 @@ public class FactoryController : Controller {
 			if (!CheckRequirements()) {
 				// Override because the additional requirements have not been met
 				areAllQuotasSatisfied = false;
-				MessageController.SendMessageToInstance(MessageUtil.RequirementsFailedMessage);
+				// Check whether the fail message has already been sent
+				if (!requirementsFailed) {
+					MessageController.SendMessageToInstance(MessageUtil.RequirementsFailedMessage);
+				}
+				requirementsFailed = true;
 			}
 		}
 		return areAllQuotasSatisfied;
@@ -146,6 +152,7 @@ public class FactoryController : Controller {
 	}
 
 	public void RunFactory () {
+		requirementsFailed = false;
 		setFactoryController();
 		ClearDropZones();
 		callOnRun();
