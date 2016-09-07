@@ -13,4 +13,5 @@ ibm13@hampshire.edu
 1. P1: Beginning Variables
 2. P2: Learning Conditionals
 3. P3: Utilizing Loops
+
 *All additional projects described in the syllabus (with the exception of "P8: Creating Match") will be implemented in future commits. Please check the repository for the most up to date project files: https://github.com/imann24/ObjectFactory*
