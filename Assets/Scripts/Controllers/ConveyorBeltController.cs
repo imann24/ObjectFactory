@@ -61,4 +61,12 @@ public class ConveyorBeltController : Controller {
 		}
 		return requirementsSatisfied;
 	}
+
+	public int GetDropZoneInventoryCount () {
+		int dropZoneInventoryCount = 0;
+		foreach (DropZone dropZone in GetComponentsInChildren<DropZone>()) {
+			dropZoneInventoryCount += dropZone.InventoryCount;
+		}
+		return dropZoneInventoryCount;
+	}
 }

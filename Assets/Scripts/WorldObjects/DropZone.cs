@@ -66,6 +66,17 @@ public class DropZone : WorldSocket {
 		offset = Vector3.zero;
 	}
 
+	public Color[] GetStoredColors () {
+		System.Collections.Generic.List<Color> colorList = new System.Collections.Generic.List<Color>();
+		foreach (WorldObject worldObject in storedObjects) {
+			Color objectColor;
+			if (!colorList.Contains(objectColor = worldObject.GetColor())) {
+				colorList.Add(objectColor);
+			}
+		}
+		return colorList.ToArray();
+	}
+
 	void collectObject (WorldObject worldObject) {
 		storedObjects.Add(worldObject);
 		captureSprite(worldObject);

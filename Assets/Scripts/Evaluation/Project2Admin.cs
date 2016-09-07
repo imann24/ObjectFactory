@@ -16,6 +16,7 @@ public class Project2Admin : ProjectAdmin {
 			ColorUtil.ToString(Color.red),
 			string.Format("{1} {0} {2}", MessageUtil.AND, ColorUtil.ToString(Color.blue), ColorUtil.ToString(Color.yellow)),
 			"Other Colors"));
+		FactoryController.InitInstancesWithQuotas(new Quota[]{new CountQuota(SPAWN_COUNT)});
 	}
 
 	void spawnFactoryObjects () {

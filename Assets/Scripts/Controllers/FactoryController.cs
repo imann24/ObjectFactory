@@ -8,6 +8,7 @@ using System.Collections;
 
 public class FactoryController : Controller {
 	const float SPAWN_OFFSET = 10f;
+	const int INVALID_INVENTORY_COUNT = -1;
 
 	public bool ShouldStartActive;
 	public GameObject FactoryObjectPrefab;
@@ -85,6 +86,7 @@ public class FactoryController : Controller {
 		}
 
 		System.Collections.Generic.Dictionary<FactoryObjectDescriptorV1, int> report = dropZone.GetFactoryObjectDescriptorV1Report();
+		int dropZoneInventoryCount = INVALID_INVENTORY_COUNT;
 		bool areAllQuotasSatisfied = true;
 		bool objectsInMotion = ObjectsInMotion();
 		foreach (Quota quota in quotas) {
@@ -94,12 +96,25 @@ public class FactoryController : Controller {
 					isCurrentQuotaSatisfied |= quota.CheckSatisfied(descriptor, report[descriptor]);
 				}
 			}
+			else if (quota is CountQuota) {
+				if (dropZoneInventoryCount == INVALID_INVENTORY_COUNT) {
+					dropZoneInventoryCount = GetDropZoneInventoryCount();
+				}
+				isCurrentQuotaSatisfied |= quota.CheckSatisfied(dropZoneInventoryCount);
+			}
 			areAllQuotasSatisfied &= isCurrentQuotaSatisfied;
 			if (!isCurrentQuotaSatisfied && !objectsInMotion && quota is SimpleQuota) {
 				foreach (FactoryObjectDescriptorV1 descriptor in report.Keys) {
 					MessageController.SendMessageToInstance (
 						MessageUtil.GetSimpleQuotaMismatchMessage(quota as SimpleQuota, new SimpleQuota(descriptor, report[descriptor])));
 				}
+			} 
+		}
+		if (areAllQuotasSatisfied) {
+			if (!CheckRequirements()) {
+				// Override because the additional requirements have not been met
+				areAllQuotasSatisfied = false;
+				MessageController.SendMessageToInstance(MessageUtil.RequirementsFailedMessage);
 			}
 		}
 		return areAllQuotasSatisfied;
@@ -111,6 +126,23 @@ public class FactoryController : Controller {
 			isObjectInMotion |= beltController.ObjectsInMotion();
 		}
 		return isObjectInMotion;
+	}
+
+	public bool CheckRequirements () {
+		bool areRequirementsSatisified = true;
+		foreach (ConveyorBeltController controller in ConveyorBelts) {
+			areRequirementsSatisified &= controller.CheckRequirements();
+		}
+		return areRequirementsSatisified;
+	}
+
+
+	public int GetDropZoneInventoryCount () {
+		int dropZoneInventoryCount = 0;
+		foreach (ConveyorBeltController controller in ConveyorBelts) {
+			dropZoneInventoryCount += controller.GetDropZoneInventoryCount();
+		}
+		return dropZoneInventoryCount;
 	}
 
 	public void RunFactory () {

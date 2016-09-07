@@ -13,7 +13,16 @@ public class Project2 : ProjectTemplate, IDelegateSortingRule {
 		if (objectToSort is FactoryObject) {
 			FactoryObject factoryObject = objectToSort as FactoryObject;
 			FactoryObjectDescriptorV1 descriptor = factoryObject.GetV1Descriptor();
+
+
+			// COLOR OF THE OBJECT:
 			Color color = descriptor.Color;
+
+			// CHECK AGAINST THESE COLORS:
+			Color yellow = ColorUtil.trueYellow;
+			Color red = Color.red;
+			Color blue = Color.blue;
+			Color green = Color.green;
 
 			/*
 			 * 
@@ -23,13 +32,13 @@ public class Project2 : ProjectTemplate, IDelegateSortingRule {
 			// START HERE Check the value of "color" against the colors that should be sorted into each shipping method
 
 			if (default(bool)) {
-				// SORT INTO THE PLANE LANE
+				// SORTS INTO THE PLANE:
 				return 0;
 			} else if (default(bool)) {
-				// SORT INTO THE BOAT LANE
+				// SORTS INTO THE BOAT:
 				return 1;
 			} else {
-				// SORT INTO THE GROUND LANE
+				// SORTS INTO THE GROUND:
 				return 2;
 			}
 

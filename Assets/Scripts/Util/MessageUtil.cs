@@ -6,6 +6,7 @@
 public static class MessageUtil {
 	public const string QUOTA_FAILED = "Quota Failed";
 	public const string QUOTA_MET = "Quota Met";
+	public const string REQUIREMENTS_FAILED = "Requirements Failed";
 	public const string AND = "and";
 
 	const string SEALED = "Sealed";
@@ -36,6 +37,12 @@ public static class MessageUtil {
 	public static Message QuotaMetMessage {
 		get {
 			return new Message(QUOTA_MET, new string[]{"The factory quota has been meet"});
+		}
+	}
+
+	public static Message RequirementsFailedMessage {
+		get {
+			return new Message(REQUIREMENTS_FAILED, new string[]{"The factory has failed the specified requirements"});
 		}
 	}
 

@@ -33,4 +33,13 @@ public class WorldObject : MonoBehaviour {
 	void setInactive () {
 		active = false;
 	}
+
+	public virtual Color GetColor () {
+		SpriteRenderer renderer;
+		if (renderer = GetComponent<SpriteRenderer>()){ 
+			return renderer.color;
+		} else {
+			return default(Color);
+		}
+	}
 }
