@@ -1,6 +1,7 @@
 ﻿/*
  * Author(s): [Insert Your Name Here], Isaiah Mann
  * Description: The submission script for Project 2 covering conditional statements
+ * Time to Complete: [Insert how long this assignment took you to complete]
  */
 
 using UnityEngine;

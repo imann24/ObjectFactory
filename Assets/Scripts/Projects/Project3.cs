@@ -1,6 +1,7 @@
 ﻿/*
  * Author(s): [Insert Your Name Here], Isaiah Mann
  * Description: The third assignment for CS112-1: Intro to Programming with Unity covering for loops
+ * Time to Complete: [Insert how long this assignment took you to complete]
  */
 
 using UnityEngine;
