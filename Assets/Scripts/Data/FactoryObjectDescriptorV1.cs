@@ -22,8 +22,8 @@ public class FactoryObjectDescriptorV1 : FactoryObjectDescriptor {
 		try {
 			FactoryObjectDescriptorV1 otherDescriptor = (FactoryObjectDescriptorV1) obj;
 			return this.Color == otherDescriptor.Color &&
-				this.Materials == otherDescriptor.Materials &&
-				this.Shipping == otherDescriptor.Shipping &&
+				this.Materials.ToLower() == otherDescriptor.Materials.ToLower() &&
+				this.Shipping.ToLower() == otherDescriptor.Shipping.ToLower() &&
 				this.IsSealed == otherDescriptor.IsSealed;
 		} 
 		catch {
