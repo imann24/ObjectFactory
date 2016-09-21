@@ -2,6 +2,10 @@
 using System.Collections;
 
 public class WorldObject : MonoBehaviour {
+	const float CAPTURED_SPRITE_SCALE = 0.5f;
+	const float OFFSET_INCREMENT = 0.035f;
+
+	protected Vector3 offset = Vector3.zero;
 	protected FactoryController factoryController;
 	protected bool active = false;
 
@@ -41,5 +45,18 @@ public class WorldObject : MonoBehaviour {
 		} else {
 			return default(Color);
 		}
+	}
+
+	protected void captureSprite (WorldObject worldObject) {
+		Transform spriteTransform = worldObject.transform;
+		spriteTransform.SetParent(transform);
+		spriteTransform.localScale *= CAPTURED_SPRITE_SCALE;
+		spriteTransform.localPosition = offset;
+		updateOffset();
+	}
+
+	protected void updateOffset () {
+		offset += Vector3.right * OFFSET_INCREMENT;
+		offset += Vector3.down * OFFSET_INCREMENT;
 	}
 }
