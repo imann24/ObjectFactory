@@ -7,6 +7,7 @@ using UnityEngine;
 using System.Collections;
 
 public class ConveyorBeltController : Controller {
+	const float MAX_BELT_SPEED = 5f;
 	ConveyorBelt[] belts;
 
 	public void ClearDropZones () {
@@ -32,6 +33,7 @@ public class ConveyorBeltController : Controller {
 	}
 
 	public void SetBeltSpeed(float beltSpeed) {
+		beltSpeed = Mathf.Clamp(beltSpeed, 0, MAX_BELT_SPEED);
 		foreach (ConveyorBelt belt in belts) {
 			belt.SetBeltSpeed(beltSpeed);
 		}
