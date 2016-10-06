@@ -8,6 +8,8 @@ using UnityEngine;
 using System.Collections;
 
 public class Project4 : ProjectTemplate {
+	[SerializeField]
+	GameObject FactoryPackagePrefab;
 
 	protected override void setupFactory () {
 		FactoryObjectDescriptorV1 blackBox = new FactoryObjectDescriptorV1(Color.black, "None", "None", false);
@@ -34,6 +36,7 @@ public class Project4 : ProjectTemplate {
 
 		// STEP 2: Assign the objects in the arrays based on the package requirements
 		package1[0] = blackBox;
+
 		// --> Add more objects to the array using the same syntax: package1[index] = boxType;
 
 		package2[0] = blackBox;

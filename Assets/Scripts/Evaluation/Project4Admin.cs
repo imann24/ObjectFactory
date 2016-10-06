@@ -7,5 +7,6 @@ using UnityEngine;
 using System.Collections;
 
 public class Project4Admin : ProjectAdmin {
-
+	void Start () {
+	}
 }

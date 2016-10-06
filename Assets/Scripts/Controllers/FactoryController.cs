@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class FactoryController : Controller {
-	const float SPAWN_OFFSET = 10f;
+	protected const float SPAWN_OFFSET = 10f;
 	const int INVALID_INVENTORY_COUNT = -1;
 
 	public bool ShouldStartActive;
@@ -218,13 +218,17 @@ public class FactoryController : Controller {
 		if (IntUtil.InRange(beltIndex, descriptors.Length)) {
 			yield return new WaitForSeconds(delayBeforeEachSpawn);
 			for (int i = 0; i < descriptors.Length; i++) {
-				GameObject factoryObject = (GameObject) Instantiate(FactoryObjectPrefab, Vector3.up * SPAWN_OFFSET, Quaternion.identity);
-				FactoryObject factoryObjectController = factoryObject.GetComponent<FactoryObject>();
-				factoryObjectController.Descriptor = descriptors[i];
-				ConveyorBelts[beltIndex].AddToBelt(factoryObjectController);
+				ConveyorBelts[beltIndex].AddToBelt(createFactoryObject(descriptors[i]));
 				yield return new WaitForSeconds(delayBeforeEachSpawn);
 			}
 		}
+	}
+
+	protected virtual FactoryObject createFactoryObject (FactoryObjectDescriptor descriptor) {
+		GameObject factoryObject = (GameObject) Instantiate(FactoryObjectPrefab, Vector3.up * SPAWN_OFFSET, Quaternion.identity);
+		FactoryObject factoryObjectController = factoryObject.GetComponent<FactoryObject>();
+		factoryObjectController.Descriptor = descriptor;
+		return factoryObjectController;
 	}
 
 	void callOnRun () {
