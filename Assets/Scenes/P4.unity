@@ -401,7 +401,6 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1174355591}
-  - {fileID: 2065672822}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1001 &1139930520
@@ -536,6 +535,7 @@ Transform:
   m_Children:
   - {fileID: 743916085}
   - {fileID: 1866839028}
+  - {fileID: 2065672822}
   m_Father: {fileID: 1127577752}
   m_RootOrder: 0
 --- !u!114 &1174355592
@@ -660,11 +660,11 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1127577752}
+    m_TransformParent: {fileID: 1174355591}
     m_Modifications:
     - target: {fileID: 455354, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.6
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 455354, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
       propertyPath: m_LocalPosition.y
@@ -692,7 +692,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455354, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11498826, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
       propertyPath: InputSender

@@ -77,7 +77,7 @@ public class ConveyorBelt : WorldSocket {
 
 	protected override void processInput (WorldObject worldObject) {
 		if (worldObject != null) {
-			if (worldObject.GetType() == typeof(FactoryObject)) {
+			if (worldObject is FactoryObject) {
 				FactoryObject factoryObject = (FactoryObject) worldObject;
 				factoryObject.ResetBeltPosition();
 				AddObjectToBelt(factoryObject);
