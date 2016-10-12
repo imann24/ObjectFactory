@@ -47,6 +47,10 @@ public static class MessageUtil {
 		}
 	}
 
+	public static Message GetSimpleObjectDefinitionMessage (string definitionName, FactoryObjectDescriptorV1 descriptor) {
+		return new Message(definitionName, descriptor.ToStringArr());
+	}
+
 	public static Message GetSimpleQuotaMismatchMessage (SimpleQuota correctQuota, SimpleQuota suppliedQuota) {
 		FactoryObjectDescriptorV1 expected = correctQuota.IDescriptor;
 		FactoryObjectDescriptorV1 received = suppliedQuota.IDescriptor;

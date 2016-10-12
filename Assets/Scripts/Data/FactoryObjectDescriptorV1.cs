@@ -64,4 +64,8 @@ public class FactoryObjectDescriptorV1 : FactoryObjectDescriptor {
 			FactoryObject.SHIPPING_TAG, Shipping,
 			FactoryObject.SEALED_TAG, IsSealed);
 	}
+
+	public string[] ToStringArr () {
+		return ToString().Split(SimpleQuota.ITEM_DIVIDER_CHAR);
+	}
 }
