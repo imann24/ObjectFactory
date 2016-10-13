@@ -51,6 +51,16 @@ public class DropZone : WorldSocket {
 		}
 		return report;
 	}
+		
+	public FactoryPackage[] GetFactoryPackageReport () {
+		System.Collections.Generic.List<FactoryPackage> packageList = new System.Collections.Generic.List<FactoryPackage>();
+		foreach (WorldObject worldObject in storedObjects) {
+			if (worldObject is FactoryPackage) {
+				packageList.Add(worldObject as FactoryPackage);
+			}
+		}
+		return packageList.ToArray();
+	}
 
 	public void Clear () {
 		WorldObject[] storedObjectsArr = storedObjects.ToArray();

@@ -11,6 +11,8 @@ public class QuotaMessage : Message {
 
 	public QuotaMessage (Quota quota, int quotaIndex) : base (getIndexedTitle(quotaIndex), processQuota(quota)){}
 
+	public QuotaMessage (string title, Quota quota) : base (title, processQuota(quota)){}
+
 	static string getIndexedTitle (int index) {
 		return string.Format("{0} {1}{2}", TITLE, index, COLON);
 	}

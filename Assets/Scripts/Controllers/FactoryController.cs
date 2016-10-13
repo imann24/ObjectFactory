@@ -93,6 +93,7 @@ public class FactoryController : Controller {
 		}
 		Dictionary<Quota, FactoryObjectDescriptorV1> closestMatches = new Dictionary<Quota, FactoryObjectDescriptorV1>();
 		Dictionary<FactoryObjectDescriptorV1, int> report = dropZone.GetFactoryObjectDescriptorV1Report();
+		FactoryPackage[] packageList = dropZone.GetFactoryPackageReport();
 		int dropZoneInventoryCount = INVALID_INVENTORY_COUNT;
 		bool areAllQuotasSatisfied = true;
 		bool objectsInMotion = ObjectsInMotion();
@@ -111,6 +112,9 @@ public class FactoryController : Controller {
 						}  else {
 							closestMatches.Add(quota, descriptor);
 						}
+						Debug.Log(quota);
+					} else if (quota is PackageQuota) {
+						Debug.Log(quota);
 					}
 				}
 			}
@@ -119,7 +123,12 @@ public class FactoryController : Controller {
 					dropZoneInventoryCount = GetDropZoneInventoryCount();
 				}
 				isCurrentQuotaSatisfied |= quota.CheckSatisfied(dropZoneInventoryCount);
+			} else if (quota is PackageQuota) {
+				foreach (FactoryPackage package in packageList) {
+					isCurrentQuotaSatisfied |= quota.CheckSatisfied(package.GetReport());
+				}
 			}
+
 			areAllQuotasSatisfied &= isCurrentQuotaSatisfied;
 			if (!isCurrentQuotaSatisfied && !objectsInMotion && quota is SimpleQuota) {
 				FactoryObjectDescriptorV1 targetDescriptor = closestMatches[quota];
@@ -138,6 +147,7 @@ public class FactoryController : Controller {
 				requirementsFailed = true;
 			}
 		}
+		Debug.Log(areAllQuotasSatisfied);
 		return areAllQuotasSatisfied;
 	}
 

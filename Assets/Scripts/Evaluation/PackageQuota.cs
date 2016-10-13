@@ -6,11 +6,13 @@
 using System.Collections.Generic;
 
 public class PackageQuota  : Quota {
+	string[] quotaTypes;
 	SimpleQuota[] contents;
 
 	// Each contained SimpleQuota represents one kind of package
-	public PackageQuota (SimpleQuota[] contents) {
+	public PackageQuota (string[] quotaTypes, SimpleQuota[] contents) {
 		this.contents = contents;
+		this.quotaTypes = quotaTypes;
 	}
 
 	// The arguments should be an array of descriptors representing the contained objects in the package
@@ -32,5 +34,13 @@ public class PackageQuota  : Quota {
 			quotasAreSatisfied &= isSatisfied;
 		}
 		return quotasAreSatisfied;
+	}
+
+	public override string ToString () {
+		string quotaCounts = string.Empty;
+		for (int i = 0; i < quotaTypes.Length; i++) {
+			quotaCounts += string.Format("{0} ({1}x){2}", quotaTypes[i], contents[i].ICount, Quota.ITEM_DIVIDER_CHAR); 
+		}
+		return quotaCounts;
 	}
 }

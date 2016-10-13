@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class FactoryPackage : FactoryObject {
 	FactoryObject[] contents;
@@ -22,5 +23,13 @@ public class FactoryPackage : FactoryObject {
 		foreach (FactoryObject factoryObject in this.contents) {
 			captureSprite(factoryObject);
 		}
+	}
+
+	public FactoryObjectDescriptorV1[] GetReport () {
+		FactoryObjectDescriptorV1[] descriptors = new FactoryObjectDescriptorV1[contents.Length];
+		for (int i = 0; i < descriptors.Length; i++) {
+			descriptors[i] = contents[i].GetV1Descriptor();
+		}
+		return descriptors;
 	}
 }
