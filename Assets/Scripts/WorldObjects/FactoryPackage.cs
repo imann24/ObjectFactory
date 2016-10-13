@@ -32,4 +32,12 @@ public class FactoryPackage : FactoryObject {
 		}
 		return descriptors;
 	}
+
+	public new FactoryPackageDescriptorV1 GetV1Descriptor () {
+		FactoryObjectDescriptorV1[] contentDescriptors = new FactoryObjectDescriptorV1[contents.Length];
+		for (int i = 0; i < contents.Length; i++) {
+			contentDescriptors[i] = contents[i].GetV1Descriptor();
+		}
+		return new FactoryPackageDescriptorV1(contentDescriptors);
+	}
 }

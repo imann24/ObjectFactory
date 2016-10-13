@@ -5,14 +5,30 @@
 
 using System.Collections.Generic;
 
-public class PackageQuota  : Quota {
+public class PackageQuota : Quota {
 	string[] quotaTypes;
 	SimpleQuota[] contents;
+
+	public string[] IQuotaTypes {
+		get {
+			return quotaTypes;
+		}
+	}
+	public SimpleQuota[] IContainedQuotas {
+		get {
+			return contents;
+		}
+	}
 
 	// Each contained SimpleQuota represents one kind of package
 	public PackageQuota (string[] quotaTypes, SimpleQuota[] contents) {
 		this.contents = contents;
 		this.quotaTypes = quotaTypes;
+	}
+
+	public PackageQuota (SimpleQuota[] contents) {
+		this.contents = contents;
+		this.quotaTypes = new string[0];
 	}
 
 	// The arguments should be an array of descriptors representing the contained objects in the package
@@ -34,6 +50,10 @@ public class PackageQuota  : Quota {
 			quotasAreSatisfied &= isSatisfied;
 		}
 		return quotasAreSatisfied;
+	}
+
+	public override int CheckSimilarities (params object[] arguments) {
+		return base.CheckSimilarities (arguments);
 	}
 
 	public override string ToString () {

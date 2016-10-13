@@ -51,10 +51,10 @@ public class SimpleQuota : Quota {
 		}
 	}
 
-	public int CheckSimilarities (params object[] arguments) {
+	public override int CheckSimilarities (params object[] arguments) {
 		try {
 			FactoryObjectDescriptorV1 argumentDescriptor = (FactoryObjectDescriptorV1) arguments[0];
-			return descriptor.CheckSimilariaties(argumentDescriptor);
+			return descriptor.CheckSimilarities(argumentDescriptor);
 		}
 		catch {
 			return 0;
@@ -63,5 +63,21 @@ public class SimpleQuota : Quota {
 
 	public override string ToString () {
 		return string.Format("{3}: {2}{1}{0}", descriptor.ToString(), ITEM_DIVIDER_CHAR, count, AMOUNT);
+	}
+
+	public bool SameDescriptor (SimpleQuota quota) {
+		return quota.descriptor.Equals(descriptor);
+	}
+	public override bool Equals (object obj) {
+		if (obj is SimpleQuota) {
+			SimpleQuota otherQuota = obj as SimpleQuota;
+			return SameDescriptor(otherQuota) && otherQuota.count == count;
+		} else {
+			return false;
+		}
+	}
+		
+	public override int GetHashCode () {
+		return descriptor.GetHashCode() + count.GetHashCode();
 	}
 }

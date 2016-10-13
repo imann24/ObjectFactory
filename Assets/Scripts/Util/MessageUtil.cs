@@ -68,6 +68,27 @@ public static class MessageUtil {
 		return new Message(title, new string[]{countMessage, colorMessage, materialsMessage, shippingMessage, isSealedMessage});
 	}
 
+	public static Message GetPackageQuotaMismatchMessage (PackageQuota correctQuota, PackageQuota suppliedQuota) {
+		string[] quotaTypes = correctQuota.IQuotaTypes;
+		SimpleQuota[] expectedQuotas = correctQuota.IContainedQuotas;
+		SimpleQuota[] suppliedQuotas = suppliedQuota.IContainedQuotas;
+		string[] comparisons = new string[quotaTypes.Length];
+		for (int i = 0; i < expectedQuotas.Length; i++) {
+			bool foundObject = false;
+			for (int j = 0; j < suppliedQuotas.Length; j++) {
+				if (expectedQuotas[i].SameDescriptor(suppliedQuotas[j])) {
+					comparisons[i] = expectedReceivedString(quotaTypes[i], expectedQuotas[i].ICount, suppliedQuotas[j].ICount);
+					foundObject = true;
+					break;
+				}
+			}
+			if (!foundObject) {
+				comparisons[i] = expectedReceivedString(quotaTypes[i], expectedQuotas[i].ICount, 0);
+			}
+		}
+		return new Message(getQuotaFailed(), comparisons);
+	}
+
 	public static Message GetShippingInstructions (string shipOnAirplane, string shipOnBoat, string shipOnTruck) {
 		return new Message(SHIPPING_INSTRUCTIONS, new string[] {
 			getShippingLine(shipOnAirplane, ShippingMethod.Plane),

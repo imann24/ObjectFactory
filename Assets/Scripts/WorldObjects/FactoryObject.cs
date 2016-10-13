@@ -38,7 +38,7 @@ public class FactoryObject : WorldObject {
 		_beltPosition = 0;
 	}
 
-	public FactoryObjectDescriptorV1 GetV1Descriptor () {
+	public virtual FactoryObjectDescriptorV1 GetV1Descriptor () {
 		return new FactoryObjectDescriptorV1(spriteRenderer.color, Tags[MATERIALS_TAG], Tags[SHIPPING_TAG], IsSealed);
 	}
 

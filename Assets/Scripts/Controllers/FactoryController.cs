@@ -91,7 +91,8 @@ public class FactoryController : Controller {
 		if (quotas == null) {
 			return false;
 		}
-		Dictionary<Quota, FactoryObjectDescriptorV1> closestMatches = new Dictionary<Quota, FactoryObjectDescriptorV1>();
+		Dictionary<Quota, FactoryObjectDescriptorV1> closestMatchesSimpleQuota = new Dictionary<Quota, FactoryObjectDescriptorV1>();
+		Dictionary<Quota, FactoryPackageDescriptorV1> closestMatchesPackageQuota = new Dictionary<Quota, FactoryPackageDescriptorV1>();
 		Dictionary<FactoryObjectDescriptorV1, int> report = dropZone.GetFactoryObjectDescriptorV1Report();
 		FactoryPackage[] packageList = dropZone.GetFactoryPackageReport();
 		int dropZoneInventoryCount = INVALID_INVENTORY_COUNT;
@@ -99,22 +100,19 @@ public class FactoryController : Controller {
 		bool objectsInMotion = ObjectsInMotion();
 		foreach (Quota quota in quotas) {
 			bool isCurrentQuotaSatisfied = false;
-			if (quota is SimpleQuota) { // Currently only supports simple quota
+			if (quota is SimpleQuota) {
 				foreach (FactoryObjectDescriptorV1 descriptor in report.Keys) {
 					isCurrentQuotaSatisfied |= quota.CheckSatisfied(descriptor, report[descriptor]);
 					if (quota is SimpleQuota) {
-						if (closestMatches.ContainsKey(quota)) {
+						if (closestMatchesSimpleQuota.ContainsKey(quota)) {
 							SimpleQuota simpleQuota = quota as SimpleQuota;
 							int similarities = simpleQuota.CheckSimilarities(descriptor);
-							if (similarities > simpleQuota.CheckSimilarities(closestMatches[quota])) {
-								closestMatches[quota] = descriptor;
+							if (similarities > simpleQuota.CheckSimilarities(closestMatchesSimpleQuota[quota])) {
+								closestMatchesSimpleQuota[quota] = descriptor;
 							}
 						}  else {
-							closestMatches.Add(quota, descriptor);
+							closestMatchesSimpleQuota.Add(quota, descriptor);
 						}
-						Debug.Log(quota);
-					} else if (quota is PackageQuota) {
-						Debug.Log(quota);
 					}
 				}
 			}
@@ -126,15 +124,29 @@ public class FactoryController : Controller {
 			} else if (quota is PackageQuota) {
 				foreach (FactoryPackage package in packageList) {
 					isCurrentQuotaSatisfied |= quota.CheckSatisfied(package.GetReport());
+					FactoryPackageDescriptorV1 packageDescriptor = package.GetV1Descriptor();
+					if (closestMatchesPackageQuota.ContainsKey(quota)) {
+						int similarities = quota.CheckSimilarities(packageDescriptor);
+						if (similarities > quota.CheckSimilarities(closestMatchesPackageQuota[quota])) {
+							closestMatchesPackageQuota[quota] = packageDescriptor;
+						}
+					} else {
+						closestMatchesPackageQuota.Add(quota, packageDescriptor);
+					}
 				}
 			}
 
 			areAllQuotasSatisfied &= isCurrentQuotaSatisfied;
-			if (!isCurrentQuotaSatisfied && !objectsInMotion && quota is SimpleQuota) {
-				FactoryObjectDescriptorV1 targetDescriptor = closestMatches[quota];
-				MessageController.SendMessageToInstance (
-					MessageUtil.GetSimpleQuotaMismatchMessage(quota as SimpleQuota, new SimpleQuota(targetDescriptor, report[targetDescriptor])));
-			} 
+			if (!isCurrentQuotaSatisfied && !objectsInMotion) {
+				if (quota is SimpleQuota) {
+					FactoryObjectDescriptorV1 targetDescriptor = closestMatchesSimpleQuota[quota];
+					MessageController.SendMessageToInstance (
+						MessageUtil.GetSimpleQuotaMismatchMessage(quota as SimpleQuota, new SimpleQuota(targetDescriptor, report[targetDescriptor])));
+				} else if (quota is PackageQuota) {
+					MessageController.SendMessageToInstance(
+						MessageUtil.GetPackageQuotaMismatchMessage(quota as PackageQuota, new PackageQuota(closestMatchesPackageQuota[quota].GetContentsAsQuotas())));
+				}
+			}
 		}
 		if (areAllQuotasSatisfied) {
 			if (!CheckRequirements()) {
@@ -147,7 +159,6 @@ public class FactoryController : Controller {
 				requirementsFailed = true;
 			}
 		}
-		Debug.Log(areAllQuotasSatisfied);
 		return areAllQuotasSatisfied;
 	}
 
