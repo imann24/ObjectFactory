@@ -18,6 +18,7 @@ public static class MessageUtil {
 	const string SATISFIED = "SATISFIED";
 	const string FAILED = "FAILED";
 	const string REQUIREMENT = "Requirement";
+	const string PACKAGE = "Package";
 
 	const string SHIPPING_INSTRUCTIONS = "Shipping Instructions";
 	const string SHIP = "Ship";
@@ -60,7 +61,7 @@ public static class MessageUtil {
 		string shippingMessage = expectedReceivedString(FactoryObject.SHIPPING_TAG, expected.Shipping, received.Shipping);
 		string isSealedMessage = expectedReceivedString(FactoryObject.SEALED_TAG, expected.IsSealed, received.IsSealed);
 		string title;
-		if (correctQuota.HasQuotaIndex) {
+		if (correctQuota.IHasQuotaIndex) {
 			title = getQuotaFailed(correctQuota.IQuotaIndex);
 		} else {
 			title = getQuotaFailed();
@@ -71,22 +72,31 @@ public static class MessageUtil {
 	public static Message GetPackageQuotaMismatchMessage (PackageQuota correctQuota, PackageQuota suppliedQuota) {
 		string[] quotaTypes = correctQuota.IQuotaTypes;
 		SimpleQuota[] expectedQuotas = correctQuota.IContainedQuotas;
-		SimpleQuota[] suppliedQuotas = suppliedQuota.IContainedQuotas;
 		string[] comparisons = new string[quotaTypes.Length];
-		for (int i = 0; i < expectedQuotas.Length; i++) {
-			bool foundObject = false;
-			for (int j = 0; j < suppliedQuotas.Length; j++) {
-				if (expectedQuotas[i].SameDescriptor(suppliedQuotas[j])) {
-					comparisons[i] = expectedReceivedString(quotaTypes[i], expectedQuotas[i].ICount, suppliedQuotas[j].ICount);
-					foundObject = true;
-					break;
+
+		if (correctQuota.Equals(suppliedQuota)) {
+			for (int i = 0; i < quotaTypes.Length; i++) {
+				int count = expectedQuotas[i].ICount;
+				comparisons[i] = expectedReceivedString(quotaTypes[i], count, count);
+			}
+			return new Message(string.Format("{0} {1}", PACKAGE, correctQuota.IHasQuotaIndex ? getQuotaMet(correctQuota.IQuotaIndex) : getQuotaMet()), comparisons);
+		} else {
+			SimpleQuota[] suppliedQuotas = suppliedQuota.IContainedQuotas;
+			for (int i = 0; i < expectedQuotas.Length; i++) {
+				bool foundObject = false;
+				for (int j = 0; j < suppliedQuotas.Length; j++) {
+					if (expectedQuotas[i].SameDescriptor(suppliedQuotas[j])) {
+						comparisons[i] = expectedReceivedString(quotaTypes[i], expectedQuotas[i].ICount, suppliedQuotas[j].ICount);
+						foundObject = true;
+						break;
+					}
+				}
+				if (!foundObject) {
+					comparisons[i] = expectedReceivedString(quotaTypes[i], expectedQuotas[i].ICount, 0);
 				}
 			}
-			if (!foundObject) {
-				comparisons[i] = expectedReceivedString(quotaTypes[i], expectedQuotas[i].ICount, 0);
-			}
+			return new Message(string.Format("{0} {1}", PACKAGE, correctQuota.IHasQuotaIndex ? getQuotaFailed(correctQuota.IQuotaIndex) : getQuotaFailed()), comparisons);			
 		}
-		return new Message(getQuotaFailed(), comparisons);
 	}
 
 	public static Message GetShippingInstructions (string shipOnAirplane, string shipOnBoat, string shipOnTruck) {

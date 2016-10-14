@@ -137,8 +137,8 @@ public class FactoryController : Controller {
 			}
 
 			areAllQuotasSatisfied &= isCurrentQuotaSatisfied;
-			if (!isCurrentQuotaSatisfied && !objectsInMotion) {
-				if (quota is SimpleQuota) {
+			if (!objectsInMotion) {
+				if (!isCurrentQuotaSatisfied && quota is SimpleQuota) {
 					FactoryObjectDescriptorV1 targetDescriptor = closestMatchesSimpleQuota[quota];
 					MessageController.SendMessageToInstance (
 						MessageUtil.GetSimpleQuotaMismatchMessage(quota as SimpleQuota, new SimpleQuota(targetDescriptor, report[targetDescriptor])));

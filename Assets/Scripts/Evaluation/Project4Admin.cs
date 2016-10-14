@@ -35,20 +35,20 @@ public class Project4Admin : ProjectAdmin {
 			new SimpleQuota[]{
 			new SimpleQuota(objectDefinitions[redBox], 2), 
 			new SimpleQuota(objectDefinitions[greenBox], 1), 
-			new SimpleQuota(objectDefinitions[blueBox], 3)});
+			new SimpleQuota(objectDefinitions[blueBox], 3)}, 1);
 
 		quotas[1] = new PackageQuota(
 			boxNames,
 			new SimpleQuota[]{
 			new SimpleQuota(objectDefinitions[redBox], 4), 
 			new SimpleQuota(objectDefinitions[greenBox], 2), 
-			new SimpleQuota(objectDefinitions[blueBox], 1)});
+			new SimpleQuota(objectDefinitions[blueBox], 1)}, 2);
 
 		quotas[2] = new PackageQuota(
 			boxNames,
 			new SimpleQuota[]{new SimpleQuota(objectDefinitions[redBox], 1), 
 			new SimpleQuota(objectDefinitions[greenBox], 3), 
-			new SimpleQuota(objectDefinitions[blueBox], 2)});
+			new SimpleQuota(objectDefinitions[blueBox], 2)}, 3);
 
 		FactoryController.InitInstancesWithQuotas(quotas);
 

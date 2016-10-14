@@ -6,7 +6,6 @@
 public class SimpleQuota : Quota {
 	FactoryObjectDescriptorV1 descriptor;
 	int count;
-	int quotaIndex;
 	public FactoryObjectDescriptorV1 IDescriptor {
 		get {
 			return descriptor;
@@ -17,22 +16,12 @@ public class SimpleQuota : Quota {
 			return count;
 		}
 	}
-	public int IQuotaIndex {
-		get {
-			return quotaIndex;
-		}
-	}
-	public bool HasQuotaIndex {get; private set;}
-
-	public SimpleQuota (FactoryObjectDescriptorV1 descriptor, int count, int quotaIndex) {
+	public SimpleQuota (FactoryObjectDescriptorV1 descriptor, int count, int quotaIndex) : base (quotaIndex) {
 		setup(descriptor, count);
-		HasQuotaIndex = true;
-		this.quotaIndex = quotaIndex;
 	}
 
 	public SimpleQuota (FactoryObjectDescriptorV1 descriptor, int count) {
 		setup(descriptor, count);
-		HasQuotaIndex = false;
 	}
 
 	void setup (FactoryObjectDescriptorV1 descriptor, int count) {

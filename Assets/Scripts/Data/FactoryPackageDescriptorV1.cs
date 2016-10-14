@@ -47,4 +47,12 @@ public class FactoryPackageDescriptorV1 : FactoryObjectDescriptor {
 		}
 		return quotas;
 	}
+
+	public override string ToString () {
+		string asString = string.Empty;
+		for (int i = 0; i < Contents.Length; i++) {
+			asString += Contents[i].ToString() + '\n';
+		}
+		return asString;
+	}
 }
