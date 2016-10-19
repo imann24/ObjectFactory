@@ -3,9 +3,21 @@
  * Description: Utility classes to assist with using arrays
  */
 
+using System.Collections.Generic;
+
 public static class ArrayUtil {
 	public static T Random<T> (T[] source) {
 		return source[UnityEngine.Random.Range(0, source.Length)];
+	}
+
+	public static T [] RemoveNullElements<T> (T[] original) {
+		List<T> modified = new List<T>();
+		for (int i = 0; i < original.Length; i++) {
+			if (original[i] != null) {
+				modified.Add(original[i]);
+			}
+		}
+		return modified.ToArray();
 	}
 
 	public static bool Contains<T> (T[] source, T target) {

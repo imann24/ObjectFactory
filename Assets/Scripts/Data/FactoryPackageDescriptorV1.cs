@@ -12,7 +12,7 @@ public class FactoryPackageDescriptorV1 : FactoryObjectDescriptor {
 	public FactoryObjectDescriptor[] Contents;
 
 	public FactoryPackageDescriptorV1 (FactoryObjectDescriptor[] contents) : base (TYPE) {
-		this.Contents = contents;
+		this.Contents = ArrayUtil.RemoveNullElements(contents);
 	}
 
 	public override int CheckSimilarities (FactoryObjectDescriptor descriptor) {
