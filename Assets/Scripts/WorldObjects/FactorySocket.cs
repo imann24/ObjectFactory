@@ -19,7 +19,7 @@ public class FactorySocket : WorldSocket {
 		worldObject.transform.SetParent(transform);
 	}
 
-	public override WorldObject SendOuput () {
+	public override WorldObject SendOutput () {
 		if (storedObjects.Count > 0) {
 			return storedObjects.Dequeue();
 		} else {

@@ -56,19 +56,19 @@ public class WorldSocket : WorldObject {
 		return null;
 	}
 
-	public virtual WorldObject SendOuput () {
+	public virtual WorldObject SendOutput () {
 		return null;	
 	}
 
 	protected virtual void receiveInputFromSender () {
 		if (InputSenderAvailable()) {
-			ReceiveInput(InputSender.SendOuput());
+			ReceiveInput(InputSender.SendOutput());
 		}
 	}
 
 	protected virtual void sendOuputToReceiver () {
 		if (OutputReceiverAvailable()) {
-			OuputReceiver.ReceiveInput(SendOuput());
+			OuputReceiver.ReceiveInput(SendOutput());
 		}
 	}
 }

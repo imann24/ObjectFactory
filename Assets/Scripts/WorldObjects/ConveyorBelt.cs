@@ -87,17 +87,17 @@ public class ConveyorBelt : WorldSocket {
 
 	protected override WorldObject getInput () {
 		if (entrance.OutputAvailable(this)) {
-			return entrance.SendOuput();
+			return entrance.SendOutput();
 		} else {
 			return base.getInput();
 		}
 	}
 		
-	public override WorldObject SendOuput () {
+	public override WorldObject SendOutput () {
 		if (exit.OutputAvailable(this)) {
-			return exit.SendOuput();
+			return exit.SendOutput();
 		} else {
-			return base.SendOuput();
+			return base.SendOutput();
 		}
 	}
 
@@ -172,6 +172,14 @@ public class ConveyorBelt : WorldSocket {
 		if (belt.speed != animationSpeed) {
 			belt.speed = animationSpeed;
 		}
+	}
+
+	public override bool InputAvailable () {
+		return entrance.OutputAvailable(this);
+	}
+		
+	protected override void receiveInputFromSender () {
+		ReceiveInput(entrance.SendOutput());	
 	}
 
 	void checkForInput () {

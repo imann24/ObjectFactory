@@ -22,9 +22,9 @@ public class Sorter : FactorySocket {
 		tickIndex = tickIndexAction;
 	}
 
-	public override WorldObject SendOuput () {
+	public override WorldObject SendOutput () {
 		callTickIndex(PeekOuput());
-		return base.SendOuput ();
+		return base.SendOutput ();
 	}
 
 	bool ouputAvailable (WorldObject objectToSend) {
@@ -55,7 +55,7 @@ public class Sorter : FactorySocket {
 
 	protected override void sendOuputToReceiver () {
 		if (OutputReceiverAvailable()) {
-			WorldObject objectToSend = SendOuput();
+			WorldObject objectToSend = SendOutput();
 			ChooseOuput(objectToSend).ReceiveInput(objectToSend);
 		}
 	}

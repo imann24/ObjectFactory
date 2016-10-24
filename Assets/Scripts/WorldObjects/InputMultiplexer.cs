@@ -27,7 +27,7 @@ public class InputMultiplexer : FactorySocket {
 	protected override WorldObject getInput () {
 		for (int i = 0; i < Inputs.Length; i++) {
 			if (Inputs[i].OutputAvailable(this)) {
-				return Inputs[i].SendOuput();
+				return Inputs[i].SendOutput();
 			}
 		}
 		return base.getInput ();

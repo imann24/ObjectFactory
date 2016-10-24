@@ -3,9 +3,22 @@
  * Description: Utility classes to assist with using arrays
  */
 
+using System;
+
 using System.Collections.Generic;
 
 public static class ArrayUtil {
+	// Fetches the first index of an array element
+	public static int IndexOf<T> (T[] source, T element) where T : IComparable {
+		for (int i = 0; i < source.Length; i++) {
+			if (source[i].CompareTo(element) == 0) {
+				return i;
+			}
+		}
+
+		throw new KeyNotFoundException();
+	}
+
 	public static T Random<T> (T[] source) {
 		return source[UnityEngine.Random.Range(0, source.Length)];
 	}
