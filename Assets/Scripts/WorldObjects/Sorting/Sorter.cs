@@ -22,20 +22,25 @@ public class Sorter : FactorySocket {
 		tickIndex = tickIndexAction;
 	}
 
-	public override WorldObject SendOuput () {
+	public override WorldObject SendOutput () {
 		callTickIndex(PeekOuput());
-		return base.SendOuput ();
+		return base.SendOutput ();
 	}
+
+	bool ouputAvailable (WorldObject objectToSend) {
+		return OutputAvailable(ChooseOuput(objectToSend));
+	}
+
 	public WorldSocket ChooseOuput (WorldObject objectToSend) {
 		int index = callDetermineIndex(objectToSend);
-		if (index == INVALID_INDEX || !IntUtil.InRange(index, 0, PossibleOutputs.Length)) {
+		if (index == INVALID_INDEX || !IntUtil.InRange(index, PossibleOutputs.Length)) {
 			return null;
 		} else {
 			return PossibleOutputs[index];
 		}
 	}
 
-	public override bool OuputReceiverAvailable () {
+	public override bool OutputReceiverAvailable () {
 		return PossibleOutputs.Length > 0;
 	}
 
@@ -49,9 +54,22 @@ public class Sorter : FactorySocket {
 	}
 
 	protected override void sendOuputToReceiver () {
-		if (OuputReceiverAvailable()) {
-			WorldObject objectToSend = SendOuput();
+		if (OutputReceiverAvailable()) {
+			WorldObject objectToSend = SendOutput();
 			ChooseOuput(objectToSend).ReceiveInput(objectToSend);
+		}
+	}
+
+	void Update () {
+		checkForInput();
+	}
+
+	void checkForInput () {
+		if (InputAvailable()) {
+			receiveInputFromSender();
+		}
+		if (OutputReceiverAvailable() && ouputAvailable(PeekOuput())) {
+			sendOuputToReceiver();
 		}
 	}
 

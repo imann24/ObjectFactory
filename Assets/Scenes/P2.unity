@@ -1195,7 +1195,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 21259828, guid: e68decbf54a5249349f04ec08d00a676, type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11499940, guid: e68decbf54a5249349f04ec08d00a676, type: 2}
       propertyPath: InputSender

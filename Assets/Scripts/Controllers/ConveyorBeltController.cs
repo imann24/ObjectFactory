@@ -39,8 +39,8 @@ public class ConveyorBeltController : Controller {
 		}
 	}
 
-	public void AddToBelt(FactoryObject factoryObject) {
-		belts[0].AddObjectToBelt(factoryObject);
+	public void AddToBelt(FactoryObject factoryObject, int beltIndex = 0) {
+		belts[beltIndex].AddObjectToBelt(factoryObject);
 	}
 
 	protected override void Init () {
@@ -70,5 +70,17 @@ public class ConveyorBeltController : Controller {
 			dropZoneInventoryCount += dropZone.InventoryCount;
 		}
 		return dropZoneInventoryCount;
+	}
+
+	public void SetPackageMovementLock (PackageMovementLock.CheckReadyToMove isReadyToMove) {
+		foreach (PackageMovementLock movementLock in GetComponentsInChildren<PackageMovementLock>()) {
+			movementLock.SetIsReadyToMove(isReadyToMove);
+		}
+	}
+
+	public void SetTrashLimitPerDropZone (int trashLimit) {
+		foreach (TrashDropZone trash in GetComponentsInChildren<TrashDropZone>()) {
+			trash.SetTrashLimit(trashLimit);
+		}
 	}
 }

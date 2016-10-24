@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class FactorySocket : WorldSocket {
-	Queue<WorldObject> storedObjects = new Queue<WorldObject>();
+	protected Queue<WorldObject> storedObjects = new Queue<WorldObject>();
 
 	public override bool HasObjects () {
 		return storedObjects.Count > 0;
@@ -19,7 +19,7 @@ public class FactorySocket : WorldSocket {
 		worldObject.transform.SetParent(transform);
 	}
 
-	public override WorldObject SendOuput () {
+	public override WorldObject SendOutput () {
 		if (storedObjects.Count > 0) {
 			return storedObjects.Dequeue();
 		} else {
@@ -40,7 +40,7 @@ public class FactorySocket : WorldSocket {
 	}
 
 	public override bool InputAvailable () {
-		return true;
+		return InputSenderAvailable() && InputSender.OutputAvailable(this);
 	}
 
 	public override bool SupportsInput () {

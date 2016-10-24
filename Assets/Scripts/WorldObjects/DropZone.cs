@@ -5,11 +5,14 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 public class DropZone : WorldSocket {
-	System.Collections.Generic.HashSet<WorldObject> storedObjects = new System.Collections.Generic.HashSet<WorldObject>();
-	UnityEngine.UI.Text inventoryCount;
+	public bool UseSharedPool = false;
+	static HashSet<WorldObject> sharedStoredObjects = new HashSet<WorldObject>();
+	protected HashSet<WorldObject> storedObjects = new HashSet<WorldObject>();
+	protected UnityEngine.UI.Text inventoryCount;
 
 	public int InventoryCount {
 		get {
@@ -17,7 +20,16 @@ public class DropZone : WorldSocket {
 		}
 	}
 
-	void updateInventoryCount () {
+
+	HashSet<WorldObject> getCorrectObjectPool () {
+		if (UseSharedPool) {
+			return sharedStoredObjects;
+		} else {
+			return storedObjects;
+		}
+	}
+
+	protected virtual void updateInventoryCount () {
 		inventoryCount.text = storedObjects.Count.ToString();
 	}
 
@@ -38,7 +50,7 @@ public class DropZone : WorldSocket {
 
 	public System.Collections.Generic.Dictionary<FactoryObjectDescriptorV1, int> GetFactoryObjectDescriptorV1Report () {
 		System.Collections.Generic.Dictionary<FactoryObjectDescriptorV1, int> report = new System.Collections.Generic.Dictionary<FactoryObjectDescriptorV1, int>();
-		foreach (WorldObject worldObject in storedObjects) {
+		foreach (WorldObject worldObject in getCorrectObjectPool()) {
 			if (worldObject is FactoryObject) {
 				FactoryObject factoryObject = (FactoryObject) worldObject;
 				FactoryObjectDescriptorV1 v1Descriptor;
@@ -54,7 +66,7 @@ public class DropZone : WorldSocket {
 		
 	public FactoryPackage[] GetFactoryPackageReport () {
 		System.Collections.Generic.List<FactoryPackage> packageList = new System.Collections.Generic.List<FactoryPackage>();
-		foreach (WorldObject worldObject in storedObjects) {
+		foreach (WorldObject worldObject in getCorrectObjectPool()) {
 			if (worldObject is FactoryPackage) {
 				packageList.Add(worldObject as FactoryPackage);
 			}
@@ -74,7 +86,7 @@ public class DropZone : WorldSocket {
 
 	public Color[] GetStoredColors () {
 		System.Collections.Generic.List<Color> colorList = new System.Collections.Generic.List<Color>();
-		foreach (WorldObject worldObject in storedObjects) {
+		foreach (WorldObject worldObject in getCorrectObjectPool()) {
 			Color objectColor;
 			if (!colorList.Contains(objectColor = worldObject.GetColor())) {
 				colorList.Add(objectColor);
@@ -83,8 +95,11 @@ public class DropZone : WorldSocket {
 		return colorList.ToArray();
 	}
 
-	void collectObject (WorldObject worldObject) {
+	protected virtual void collectObject (WorldObject worldObject) {
 		storedObjects.Add(worldObject);
+		if (UseSharedPool) {
+			sharedStoredObjects.Add(worldObject);
+		}
 		captureSprite(worldObject);
 		updateInventoryCount();
 		if (factoryController.CheckQuotasForDropZone(this)) {

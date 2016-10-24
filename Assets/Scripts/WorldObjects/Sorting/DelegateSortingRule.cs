@@ -11,8 +11,12 @@ public class DelegateSortingRule : SortingRule {
 
 	protected override void assignActions () {
 		IDelegateSortingRule delegateRule = DelegateSortingRuleObject.GetComponent<IDelegateSortingRule>();
-		determineSort = delegateRule.DetermineSortIndex;
-		peekSort = delegateRule.PeekSortIndex;
-		tickSort = delegateRule.TickSortIndex;
+		if (delegateRule != null) {
+			determineSort = delegateRule.DetermineSortIndex;
+			peekSort = delegateRule.PeekSortIndex;
+			tickSort = delegateRule.TickSortIndex;
+		} else {
+			Debug.LogError("Delegate Rule is null");
+		}
 	}
 }

@@ -11,14 +11,11 @@ public class Project4Admin : ProjectAdmin {
 
 	void Start () {
 		// Set the definitions of the kinds of boxes
-		string redBox = "Red Box";
-		string greenBox = "Green Box";
-		string blueBox = "Blue Box";
-		string[] boxNames = new string[]{redBox, greenBox, blueBox};
+		string[] boxNames = new string[]{redBoxKey, greenBoxKey, blueBoxKey};
 		Dictionary<string, FactoryObjectDescriptorV1> objectDefinitions = new Dictionary<string, FactoryObjectDescriptorV1>() {
-			{redBox, new FactoryObjectDescriptorV1(Color.red, "Fragile", "Priority", true)},
-			{greenBox, new FactoryObjectDescriptorV1(Color.green, "Heavy", "Economy", false)},
-			{blueBox, new FactoryObjectDescriptorV1(Color.blue, "Hazardous", "International", true)}};
+			{redBoxKey, new FactoryObjectDescriptorV1(Color.red, "Fragile", "Priority", true)},
+			{greenBoxKey, new FactoryObjectDescriptorV1(Color.green, "Heavy", "Economy", false)},
+			{blueBoxKey, new FactoryObjectDescriptorV1(Color.blue, "Hazardous", "International", true)}};
 
 		if (MessageController.Instance) {
 			// Send message to UI about box types
@@ -33,22 +30,22 @@ public class Project4Admin : ProjectAdmin {
 		quotas[0] = new PackageQuota(
 			boxNames,
 			new SimpleQuota[]{
-			new SimpleQuota(objectDefinitions[redBox], 2), 
-			new SimpleQuota(objectDefinitions[greenBox], 1), 
-			new SimpleQuota(objectDefinitions[blueBox], 3)}, 1);
+			new SimpleQuota(objectDefinitions[redBoxKey], 2), 
+			new SimpleQuota(objectDefinitions[greenBoxKey], 1), 
+			new SimpleQuota(objectDefinitions[blueBoxKey], 3)}, 1);
 
 		quotas[1] = new PackageQuota(
 			boxNames,
 			new SimpleQuota[]{
-			new SimpleQuota(objectDefinitions[redBox], 4), 
-			new SimpleQuota(objectDefinitions[greenBox], 2), 
-			new SimpleQuota(objectDefinitions[blueBox], 1)}, 2);
+			new SimpleQuota(objectDefinitions[redBoxKey], 4), 
+			new SimpleQuota(objectDefinitions[greenBoxKey], 2), 
+			new SimpleQuota(objectDefinitions[blueBoxKey], 1)}, 2);
 
 		quotas[2] = new PackageQuota(
 			boxNames,
-			new SimpleQuota[]{new SimpleQuota(objectDefinitions[redBox], 1), 
-			new SimpleQuota(objectDefinitions[greenBox], 3), 
-			new SimpleQuota(objectDefinitions[blueBox], 2)}, 3);
+			new SimpleQuota[]{new SimpleQuota(objectDefinitions[redBoxKey], 1), 
+			new SimpleQuota(objectDefinitions[greenBoxKey], 3), 
+			new SimpleQuota(objectDefinitions[blueBoxKey], 2)}, 3);
 
 		FactoryController.InitInstancesWithQuotas(quotas);
 

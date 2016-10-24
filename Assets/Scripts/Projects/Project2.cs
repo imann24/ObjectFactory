@@ -8,7 +8,6 @@ using UnityEngine;
 using System.Collections;
 
 public class Project2 : ProjectTemplate, IDelegateSortingRule {
-	const int DEFAULT_INDEX = 0;
 
 	public int DetermineSortIndex (WorldObject objectToSort, WorldSocket[] possibleOuputs) {
 		if (objectToSort is FactoryObject) {

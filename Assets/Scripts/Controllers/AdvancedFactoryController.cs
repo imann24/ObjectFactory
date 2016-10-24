@@ -27,4 +27,28 @@ public class AdvancedFactoryController : FactoryController {
 			return base.createFactoryObject (descriptor);
 		}
 	}
+
+	public static void SetPackageMovementLock (PackageMovementLock.CheckReadyToMove isReadyToMove) {
+		if (Instance is AdvancedFactoryController) {
+			(Instance as AdvancedFactoryController).setInstancePackageMovementLock(isReadyToMove);
+		}
+	}
+		
+	void setInstancePackageMovementLock (PackageMovementLock.CheckReadyToMove isReadyToMove) {
+		foreach (ConveyorBeltController controller in ConveyorBelts) {
+			controller.SetPackageMovementLock(isReadyToMove);
+		}
+	}
+
+	public static void SetTrashLimitPerDropZone (int trashLimit) {
+		if (Instance is AdvancedFactoryController) {
+			(Instance as AdvancedFactoryController).setInstanceTrashLimitPerDropZone(trashLimit);
+		}
+	}
+
+	void setInstanceTrashLimitPerDropZone (int trashLimit) {
+		foreach (ConveyorBeltController belt in ConveyorBelts) {
+			belt.SetTrashLimitPerDropZone(trashLimit);
+		}
+	}
 }
