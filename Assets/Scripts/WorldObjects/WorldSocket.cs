@@ -18,8 +18,8 @@ public class WorldSocket : WorldObject {
 		return InputSender != null && InputSender.SupportsOuput();
 	}
 
-	public virtual bool OuputReceiverAvailable () {
-		return OuputReceiver != null && OuputReceiver.SupportsInput();
+	public virtual bool OutputReceiverAvailable () {
+		return OuputReceiver!= null && OuputReceiver.SupportsInput();
 	}
 
 	public virtual bool InputAvailable () {
@@ -67,7 +67,7 @@ public class WorldSocket : WorldObject {
 	}
 
 	protected virtual void sendOuputToReceiver () {
-		if (OuputReceiverAvailable()) {
+		if (OutputReceiverAvailable()) {
 			OuputReceiver.ReceiveInput(SendOuput());
 		}
 	}

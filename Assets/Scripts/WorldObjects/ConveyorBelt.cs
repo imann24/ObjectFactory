@@ -112,10 +112,6 @@ public class ConveyorBelt : WorldSocket {
 	public override bool OutputAvailable (WorldSocket availableFor) {
 		return exit.OutputAvailable(availableFor);
 	}
-
-	public override bool InputAvailable () {
-		return InputSenderAvailable() && InputSender.OutputAvailable(this);
-	}
 		
 	public override bool HasObjects () {
 		return objectsOnBelt.Count > 0;

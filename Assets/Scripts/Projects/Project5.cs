@@ -14,7 +14,6 @@ public class Project5 : ProjectTemplate, IDelegateSortingRule {
 
 	bool ReadyToShip (int objectCountInPackage) {
 		// TODO: Return true is objectCountInPackage is greater than or equal to packageQuota  
-		Debug.Log(objectCountInPackage);
 		return false;
 	}
 
