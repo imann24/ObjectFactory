@@ -11,8 +11,8 @@ using System.Linq;
 public class DropZone : WorldSocket {
 	public bool UseSharedPool = false;
 	static HashSet<WorldObject> sharedStoredObjects = new HashSet<WorldObject>();
-	HashSet<WorldObject> storedObjects = new HashSet<WorldObject>();
-	UnityEngine.UI.Text inventoryCount;
+	protected HashSet<WorldObject> storedObjects = new HashSet<WorldObject>();
+	protected UnityEngine.UI.Text inventoryCount;
 
 	public int InventoryCount {
 		get {
@@ -29,7 +29,7 @@ public class DropZone : WorldSocket {
 		}
 	}
 
-	void updateInventoryCount () {
+	protected virtual void updateInventoryCount () {
 		inventoryCount.text = storedObjects.Count.ToString();
 	}
 
@@ -95,7 +95,7 @@ public class DropZone : WorldSocket {
 		return colorList.ToArray();
 	}
 
-	void collectObject (WorldObject worldObject) {
+	protected virtual void collectObject (WorldObject worldObject) {
 		storedObjects.Add(worldObject);
 		if (UseSharedPool) {
 			sharedStoredObjects.Add(worldObject);

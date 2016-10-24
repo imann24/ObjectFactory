@@ -12,12 +12,23 @@ public class Project5Admin : ProjectAdmin {
 	int countPerType = 10;
 	int beltCount = 3;
 	float spawnDelay = 0.5f;
+
 	void Start () {
+		createSendingMessage();
 		setupQuotas();
 		FactoryController.SubscribeRunFactoryAction(spawnFactoryObjects);
 		FactoryController.SubscribeRunFactoryAction(setBeltSpeed);
+		AdvancedFactoryController.SetTrashLimitPerDropZone(countPerType);
 	}
-
+		
+	void createSendingMessage () {
+		MessageController.SendMessageToInstance(
+			new Message("Unorganized Boxes Alert!",
+				new string[] {
+					"Gray (10x), Red (10x), Green (10x), Blue (10x)",
+					"Trash the Gray Boxes",
+					"Sort the Other Boxes"}));
+	}
 
 	void setupQuotas () {
 		// Set the three required packages
@@ -36,7 +47,7 @@ public class Project5Admin : ProjectAdmin {
 		FactoryController.InitInstancesWithQuotas(quotas);
 		// Send message to UI about package requirements
 		if (MessageController.Instance) {
-			string packageKey = "Package";
+			string packageKey = "Package Quota";
 			string[] packagePositions = {"Top", "Middle", "Bottom"};
 			int index = 0;
 			foreach (Quota quota in quotas) {
@@ -48,7 +59,7 @@ public class Project5Admin : ProjectAdmin {
 
 	void spawnFactoryObjects () {
 		List<FactoryObjectDescriptorV1> descriptors = new List<FactoryObjectDescriptorV1>();
-		FactoryObjectDescriptorV1[] boxTypes = new FactoryObjectDescriptorV1[]{blackBox, redBox, greenBox, blueBox};
+		FactoryObjectDescriptorV1[] boxTypes = new FactoryObjectDescriptorV1[]{grayBox, redBox, greenBox, blueBox};
 		foreach (FactoryObjectDescriptorV1 descriptorType in boxTypes) {
 			for (int i = 0; i < countPerType; i++) {
 				descriptors.Add(descriptorType);

@@ -225,6 +225,17 @@ public class FactoryController : Controller {
 		}
 	}
 
+	public static void HaltSpawning () {
+		if (Instance) {
+			Instance.haltInstanceSpawning();
+		}
+
+	}
+
+	void haltInstanceSpawning () {
+		StopAllCoroutines();	
+	}
+
 	IEnumerator DelayedAddBeltToDescriptor () {
 		yield return new WaitForEndOfFrame();
 		StartAddToBeltByDescriptor(this.beltIndex, descriptorQueue.ToArray(), this.delayBeforeEachSpawn);

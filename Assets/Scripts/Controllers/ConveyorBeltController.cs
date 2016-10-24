@@ -77,4 +77,10 @@ public class ConveyorBeltController : Controller {
 			movementLock.SetIsReadyToMove(isReadyToMove);
 		}
 	}
+
+	public void SetTrashLimitPerDropZone (int trashLimit) {
+		foreach (TrashDropZone trash in GetComponentsInChildren<TrashDropZone>()) {
+			trash.SetTrashLimit(trashLimit);
+		}
+	}
 }

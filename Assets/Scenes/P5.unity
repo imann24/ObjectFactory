@@ -128,6 +128,74 @@ Prefab:
       propertyPath: m_RootOrder
       value: 23
       objectReference: {fileID: 0}
+    - target: {fileID: 11465076, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465076, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465076, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11477362, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 225
+      objectReference: {fileID: 0}
+    - target: {fileID: 11477362, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402068, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402068, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 461558, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.037
+      objectReference: {fileID: 0}
+    - target: {fileID: 461558, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.364
+      objectReference: {fileID: 0}
+    - target: {fileID: 461558, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.5198264
+      objectReference: {fileID: 0}
+    - target: {fileID: 461558, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5198264
+      objectReference: {fileID: 0}
+    - target: {fileID: 461558, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.5198264
+      objectReference: {fileID: 0}
+    - target: {fileID: 101792, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_Name
+      value: TrashCanSprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 11477362, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_Color.r
+      value: 0.75735295
+      objectReference: {fileID: 0}
+    - target: {fileID: 11477362, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_Color.g
+      value: 0.21718207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11477362, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_Color.b
+      value: 0.21718207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11477362, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36e1ab94c934b4c8099f7754ce2e51a6, type: 2}
   m_IsPrefabParent: 0
