@@ -27,4 +27,16 @@ public class AdvancedFactoryController : FactoryController {
 			return base.createFactoryObject (descriptor);
 		}
 	}
+
+	public static void SetPackageMovementLock (PackageMovementLock.CheckReadyToMove isReadyToMove) {
+		if (Instance is AdvancedFactoryController) {
+			(Instance as AdvancedFactoryController).setInstancePackageMovementLock(isReadyToMove);
+		}
+	}
+
+	void setInstancePackageMovementLock (PackageMovementLock.CheckReadyToMove isReadyToMove) {
+		foreach (ConveyorBeltController controller in ConveyorBelts) {
+			controller.SetPackageMovementLock(isReadyToMove);
+		}
+	}
 }

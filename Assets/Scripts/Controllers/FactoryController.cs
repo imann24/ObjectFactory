@@ -14,7 +14,7 @@ public class FactoryController : Controller {
 	public bool ShouldStartActive;
 	public GameObject FactoryObjectPrefab;
 
-	static FactoryController Instance;
+	protected static FactoryController Instance;
 
 	public delegate void FactoryAction();
 	FactoryAction onRun;

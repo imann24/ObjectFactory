@@ -71,4 +71,10 @@ public class ConveyorBeltController : Controller {
 		}
 		return dropZoneInventoryCount;
 	}
+
+	public void SetPackageMovementLock (PackageMovementLock.CheckReadyToMove isReadyToMove) {
+		foreach (PackageMovementLock movementLock in GetComponentsInChildren<PackageMovementLock>()) {
+			movementLock.SetIsReadyToMove(isReadyToMove);
+		}
+	}
 }
