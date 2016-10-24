@@ -203,9 +203,9 @@ public class FactoryController : Controller {
 		}
 	}
 		
-	public static void AddToBeltByDescriptor (int beltIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn) {
+	public static void AddToBeltByDescriptor (int beltControllerIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn, int minBeltIndex = 0, int maxBeltIndex = 1) {
 		if (Instance) {	
-			Instance.StartAddToBeltByDescriptor(beltIndex, descriptors, delayBeforeEachSpawn);
+			Instance.StartAddToBeltByDescriptor(beltControllerIndex, descriptors, delayBeforeEachSpawn, minBeltIndex, maxBeltIndex);
 		}
 	}
 
@@ -231,15 +231,15 @@ public class FactoryController : Controller {
 		descriptorQueue.Clear();
 	}
 
-	void StartAddToBeltByDescriptor (int beltIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn) {
-		StartCoroutine(RunAddBeltByDescriptor(beltIndex, descriptors, delayBeforeEachSpawn));
+	void StartAddToBeltByDescriptor (int beltControllerIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn, int minBeltIndex = 0, int maxBeltIndex = 1) {
+		StartCoroutine(RunAddBeltByDescriptor(beltControllerIndex, descriptors, delayBeforeEachSpawn, minBeltIndex, maxBeltIndex));
 	}
 
-	IEnumerator RunAddBeltByDescriptor (int beltIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn) {
+	IEnumerator RunAddBeltByDescriptor (int beltControllerIndex, FactoryObjectDescriptor[] descriptors, float delayBeforeEachSpawn, int minBeltIndex = 0, int maxBeltIndex = 1) {
 		if (IntUtil.InRange(beltIndex, descriptors.Length)) {
 			yield return new WaitForSeconds(delayBeforeEachSpawn);
 			for (int i = 0; i < descriptors.Length; i++) {
-				ConveyorBelts[beltIndex].AddToBelt(createFactoryObject(descriptors[i]));
+				ConveyorBelts[beltControllerIndex].AddToBelt(createFactoryObject(descriptors[i]), Random.Range(minBeltIndex, maxBeltIndex));
 				yield return new WaitForSeconds(delayBeforeEachSpawn);
 			}
 		}

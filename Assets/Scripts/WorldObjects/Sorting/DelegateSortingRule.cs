@@ -15,6 +15,8 @@ public class DelegateSortingRule : SortingRule {
 			determineSort = delegateRule.DetermineSortIndex;
 			peekSort = delegateRule.PeekSortIndex;
 			tickSort = delegateRule.TickSortIndex;
+		} else {
+			Debug.LogError("Delegate Rule is null");
 		}
 	}
 }

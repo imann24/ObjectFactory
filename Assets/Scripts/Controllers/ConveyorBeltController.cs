@@ -39,8 +39,8 @@ public class ConveyorBeltController : Controller {
 		}
 	}
 
-	public void AddToBelt(FactoryObject factoryObject) {
-		belts[0].AddObjectToBelt(factoryObject);
+	public void AddToBelt(FactoryObject factoryObject, int beltIndex = 0) {
+		belts[beltIndex].AddObjectToBelt(factoryObject);
 	}
 
 	protected override void Init () {

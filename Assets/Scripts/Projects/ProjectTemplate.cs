@@ -7,6 +7,7 @@ using UnityEngine;
 using System.Collections;
 
 public abstract class ProjectTemplate : MonoBehaviour {
+	protected const int DEFAULT_INDEX = 0;
 	public string ProjectID {get; private set;}
 	public GameObject FactoryObjectPrefab;
 

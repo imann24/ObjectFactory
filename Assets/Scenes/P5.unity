@@ -185,6 +185,18 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 426378, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
   m_PrefabInternal: {fileID: 52239889}
+--- !u!114 &59763501 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11461858, guid: 55854b4c2285a46049f32446a96ad0a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 2021668687}
+  m_Script: {fileID: 11500000, guid: ffe8784c964354b90a6f5599f95e998c, type: 3}
+--- !u!114 &216409392 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11464838, guid: 36e1ab94c934b4c8099f7754ce2e51a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 49518164}
+  m_Script: {fileID: 11500000, guid: a17a5e9a860434fc0aea91a4db8759a2, type: 3}
 --- !u!4 &324200485 stripped
 Transform:
   m_PrefabParentObject: {fileID: 426378, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
@@ -282,6 +294,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7b78ca36d3f44cf916588e29e5f720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &550437832 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11461858, guid: 55854b4c2285a46049f32446a96ad0a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 984813687}
+  m_Script: {fileID: 11500000, guid: ffe8784c964354b90a6f5599f95e998c, type: 3}
 --- !u!1001 &614645813
 Prefab:
   m_ObjectHideFlags: 0
@@ -524,7 +542,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 185366, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
       propertyPath: m_Name
-      value: DropZone (2)
+      value: DropZoneBottom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
@@ -768,12 +786,12 @@ Transform:
   - {fileID: 500992102}
   - {fileID: 726793800}
   - {fileID: 2076210787}
-  - {fileID: 324200485}
   - {fileID: 1963466549}
+  - {fileID: 324200485}
   - {fileID: 961864372}
-  - {fileID: 1970848601}
   - {fileID: 1902578693}
   - {fileID: 1812513362}
+  - {fileID: 1970848601}
   - {fileID: 1990619445}
   - {fileID: 1412351723}
   - {fileID: 36693747}
@@ -842,7 +860,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 185366, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
       propertyPath: m_Name
-      value: DropZone (1)
+      value: DropZoneMiddle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
@@ -1010,11 +1028,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 426378, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 100862, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_Name
-      value: ConveyorBeltMiddleTop (1)
+      value: ConveyorBeltMiddle2Top
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
@@ -1060,7 +1078,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100862, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_Name
-      value: ConveyorBeltMiddleBottom (1)
+      value: ConveyorBeltMiddle2Bottom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
@@ -1289,11 +1307,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 426378, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 100862, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_Name
-      value: ConveyorBeltMiddleMiddle (2)
+      value: ConveyorBeltEndMiddle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
@@ -1453,6 +1471,14 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.35
       objectReference: {fileID: 0}
+    - target: {fileID: 185366, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
+      propertyPath: m_Name
+      value: DropZoneTop
+      objectReference: {fileID: 0}
+    - target: {fileID: 185366, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4609b887aa167476f9d46c2548d97d14, type: 2}
   m_IsPrefabParent: 0
@@ -1493,11 +1519,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 426378, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100862, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_Name
-      value: ConveyorBeltMiddleTop (2)
+      value: ConveyorBeltEndTop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
@@ -1513,6 +1539,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1229265618}
     m_Modifications:
+    - target: {fileID: 11499940, guid: e68decbf54a5249349f04ec08d00a676, type: 2}
+      propertyPath: PossibleOutputs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 471328, guid: e68decbf54a5249349f04ec08d00a676, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2.27
@@ -1557,6 +1587,22 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 2.727656
       objectReference: {fileID: 0}
+    - target: {fileID: 11499940, guid: e68decbf54a5249349f04ec08d00a676, type: 2}
+      propertyPath: PossibleOutputs.Array.data[0]
+      value: 
+      objectReference: {fileID: 216409392}
+    - target: {fileID: 11499940, guid: e68decbf54a5249349f04ec08d00a676, type: 2}
+      propertyPath: PossibleOutputs.Array.data[1]
+      value: 
+      objectReference: {fileID: 59763501}
+    - target: {fileID: 11499940, guid: e68decbf54a5249349f04ec08d00a676, type: 2}
+      propertyPath: PossibleOutputs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1964568545}
+    - target: {fileID: 11499940, guid: e68decbf54a5249349f04ec08d00a676, type: 2}
+      propertyPath: PossibleOutputs.Array.data[3]
+      value: 
+      objectReference: {fileID: 550437832}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e68decbf54a5249349f04ec08d00a676, type: 2}
   m_IsPrefabParent: 0
@@ -1568,6 +1614,12 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 426378, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
   m_PrefabInternal: {fileID: 1455680112}
+--- !u!114 &1964568545 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11461858, guid: 55854b4c2285a46049f32446a96ad0a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1878958745}
+  m_Script: {fileID: 11500000, guid: ffe8784c964354b90a6f5599f95e998c, type: 3}
 --- !u!1001 &1970848600
 Prefab:
   m_ObjectHideFlags: 0
@@ -1605,11 +1657,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 426378, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 100862, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_Name
-      value: ConveyorBeltMiddleBottom (2)
+      value: ConveyorBeltEndBottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 100862, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
@@ -1709,11 +1765,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 426378, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100862, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
       propertyPath: m_Name
-      value: ConveyorBeltMiddleMiddle (1)
+      value: ConveyorBeltMiddle2Middle
+      objectReference: {fileID: 0}
+    - target: {fileID: 100862, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55854b4c2285a46049f32446a96ad0a6, type: 2}

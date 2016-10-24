@@ -6,8 +6,10 @@
 
 using UnityEngine;
 
-public class Project5 : ProjectTemplate {
+public class Project5 : ProjectTemplate, IDelegateSortingRule {
+	int trashIndex = 0;
 	int packageQuota = 10;
+	int[] packageIndexes = new int[]{1, 2, 3};
 	Color[] packageColors = new Color[]{Color.red, Color.green, Color.blue};
 
 	bool ReadyToShip (int objectCountInPackage) {
@@ -21,7 +23,7 @@ public class Project5 : ProjectTemplate {
 		return false;
 	}
 
-	int PackageIndex (Color objectColor) {
+	int GetPackageIndex (Color objectColor) {
 		// TODO: Return the index of the Color in the packageColors array, or -1 if the packageColors array does not contain this color
 		return 0;
 	}
@@ -30,4 +32,30 @@ public class Project5 : ProjectTemplate {
 		AdvancedFactoryController.SetPackageMovementLock(ReadyToShip);
 	}
 
+	public int DetermineSortIndex (WorldObject objectToSort, WorldSocket[] possibleOuputs) {
+		if (objectToSort is FactoryObject) {
+			FactoryObject factoryObject = objectToSort as FactoryObject;
+			FactoryObjectDescriptorV1 descriptor = factoryObject.GetV1Descriptor();
+			if (ShouldKeepObject(descriptor.Color)) {
+				int packageIndex = GetPackageIndex(descriptor.Color);
+				if (packageIndex >= 0 && packageIndex < packageIndexes.Length) {
+					return packageIndexes[packageIndex];
+				} else {
+					return DEFAULT_INDEX;
+				}
+			} else {
+				return trashIndex;
+			}
+		} else {
+			return DEFAULT_INDEX;
+		}
+	}
+
+	public int PeekSortIndex (WorldObject objectToSort, WorldSocket[] possibleOutputs) {
+		return DetermineSortIndex(objectToSort, possibleOutputs);
+	}
+
+	public int TickSortIndex (WorldObject objectToSort, WorldSocket[] possibleOutputs) {
+		return DetermineSortIndex(objectToSort, possibleOutputs);
+	}
 }
