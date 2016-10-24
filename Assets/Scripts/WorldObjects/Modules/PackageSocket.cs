@@ -27,6 +27,8 @@ public class PackageSocket : FactorySocket {
 	void checkToSendOuput () {
 		if (OuputReceiver && OutputAvailable(OuputReceiver)) {
 			OuputReceiver.ReceiveInput(SendOutput());
+			InputSender.OuputReceiver = null;
+			InputSender = null;
 		}
 	}
 
