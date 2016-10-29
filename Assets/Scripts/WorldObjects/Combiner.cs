@@ -9,25 +9,26 @@ using System.Collections.Generic;
 public class Combiner : InputMultiplexer {
 	protected List<CombinableFactoryObject> storedCombinableObjects = new List<CombinableFactoryObject>();
 
-	protected override void processInput (WorldObject worldObject) {
+	public override void ReceiveInput (WorldObject worldObject) {
 		if (worldObject is CombinableFactoryObject) {
 			CombinableFactoryObject input = worldObject as CombinableFactoryObject;
 			FactoryObject combinationResult;
 			if (tryToCombine(input, out combinationResult)) {
-				base.ReceiveInput(combinationResult);
+				OuputReceiver.ReceiveInput(combinationResult);
 			} else {
 				storeCominableObject(input);
 			}
 		} else {
-			base.processInput (worldObject);
+			base.ReceiveInput (worldObject);
 		}
 	}
 
 	protected virtual bool tryToCombine (CombinableFactoryObject cominableFactoryObject, out FactoryObject result) {
 		foreach (CombinableFactoryObject potentialCombination in storedCombinableObjects) {
 			if (potentialCombination.CanCombineWith(cominableFactoryObject)) {
-				result = potentialCombination.Combine(cominableFactoryObject);
+				result = cominableFactoryObject.Combine(potentialCombination);
 				storedCombinableObjects.Remove(potentialCombination);
+				Destroy(potentialCombination.gameObject);
 				return true;
 			}
 		}

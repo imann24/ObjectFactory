@@ -12,7 +12,7 @@ public class CombinableFactoryObject : ModifiableFactoryObject, IFactoryObjectMo
 		}
 	}
 
-	public FactoryObject Combine (CombinableFactoryObject factoryObject) {
+	public virtual FactoryObject Combine (CombinableFactoryObject factoryObject) {
 		// TODO: Implement the logic for combining two objects
 		return this;
 	}
@@ -23,7 +23,6 @@ public class CombinableFactoryObject : ModifiableFactoryObject, IFactoryObjectMo
 	}
 
 	public virtual bool CanCombineWith (CombinableFactoryObject factoryObject) {
-		// TODO Implement the logic for whether this object is compatible with other objects
 		return false;
 	}
 
