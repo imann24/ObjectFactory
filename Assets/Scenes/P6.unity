@@ -211,7 +211,7 @@ GameObject:
   - 222: {fileID: 263092199}
   - 114: {fileID: 263092198}
   m_Layer: 5
-  m_Name: Text
+  m_Name: CombinerLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
