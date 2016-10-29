@@ -61,4 +61,11 @@ public class Project5AdminEditor : ProjectAdminEditor {
 	}
 }
 
+[CustomEditor(typeof(Project6Admin))]
+public class Project6AdminEditor : ProjectAdminEditor {
+	protected override ProjectAdmin castTarget (Object target) {
+		return (Project6Admin) target;
+	}
+}
+
 #endif

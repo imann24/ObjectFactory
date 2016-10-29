@@ -15,6 +15,10 @@ public class FactorySocket : WorldSocket {
 	}
 
 	public override void ReceiveInput (WorldObject worldObject) {
+		storeObject(worldObject);
+	}
+
+	protected void storeObject (WorldObject worldObject) {
 		storedObjects.Enqueue(worldObject);
 		worldObject.transform.SetParent(transform);
 	}

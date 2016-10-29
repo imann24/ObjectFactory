@@ -8,6 +8,7 @@ public class WorldObject : MonoBehaviour {
 	protected Vector3 offset = Vector3.zero;
 	protected FactoryController factoryController;
 	protected bool active = false;
+	SpriteRenderer renderer;
 
 	// Use this for initialization
 	void Awake () {
@@ -27,7 +28,7 @@ public class WorldObject : MonoBehaviour {
 	}
 
 	virtual protected void setReferences () {
-
+		renderer = GetComponent<SpriteRenderer>();
 	}
 
 	void setActive () {
@@ -39,13 +40,19 @@ public class WorldObject : MonoBehaviour {
 	}
 
 	public virtual Color GetColor () {
-		SpriteRenderer renderer;
-		if (renderer = GetComponent<SpriteRenderer>()){ 
+		if (renderer){ 
 			return renderer.color;
 		} else {
 			return default(Color);
 		}
 	}
+
+	public virtual void SetColor (Color color) {
+		if (renderer) {
+			renderer.color = color;
+		}
+	}
+
 
 	protected void captureSprite (WorldObject worldObject) {
 		Transform spriteTransform = worldObject.transform;

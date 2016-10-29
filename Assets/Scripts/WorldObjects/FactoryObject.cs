@@ -63,7 +63,7 @@ public class FactoryObject : WorldObject {
 
 	void setDescriptor (FactoryObjectDescriptor descriptor) {
 		Tags.Clear();
-		if (descriptor.Type == FactoryObjectDescriptorV1.TYPE) {
+		if (descriptor.Type == FactoryObjectDescriptorV1.TYPE || descriptor.Type == CombinableFactoryObjectDescriptor.TYPE) {
 			FactoryObjectDescriptorV1 d = (FactoryObjectDescriptorV1) descriptor;
 			spriteRenderer.color = d.Color;
 			Tags.Add(SHIPPING_TAG, d.Shipping);
