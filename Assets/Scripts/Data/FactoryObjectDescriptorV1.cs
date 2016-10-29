@@ -11,7 +11,7 @@ public class FactoryObjectDescriptorV1 : FactoryObjectDescriptor {
 	public string Shipping;
 	public bool IsSealed;
 
-	public FactoryObjectDescriptorV1 (UnityEngine.Color color, string materials, string shipping, bool isSealed) : base (TYPE) {
+	public FactoryObjectDescriptorV1 (UnityEngine.Color color, string materials, string shipping, bool isSealed, string type = TYPE) : base (type) {
 		this.Color = color;
 		this.Materials = materials;
 		if (this.Materials == null) {
