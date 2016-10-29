@@ -34,4 +34,9 @@ public class ColorRequirement : FactoryRequirement {
 		}
 		return acceptedColorsIsSatsified && excludedColorsIsSatisfied;
 	}
+
+	public void Set (Color[] acceptsColors, Color[] excludedColors) {
+		this.AcceptedColors = acceptsColors;
+		this.ExcludedColors = excludedColors;
+	}
 }

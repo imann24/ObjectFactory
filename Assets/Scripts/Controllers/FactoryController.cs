@@ -225,6 +225,14 @@ public class FactoryController : Controller {
 		}
 	}
 
+	public static void SetAllColorRequirements (Color[] acceptedColors, Color[] excludedColors) {
+		if (Instance) {
+			foreach (ConveyorBeltController controller in Instance.ConveyorBelts) {
+				controller.SetColorRequirement(acceptedColors, excludedColors);
+			}
+		}
+	}
+
 	public static void HaltSpawning () {
 		if (Instance) {
 			Instance.haltInstanceSpawning();

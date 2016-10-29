@@ -83,4 +83,10 @@ public class ConveyorBeltController : Controller {
 			trash.SetTrashLimit(trashLimit);
 		}
 	}
+
+	public void SetColorRequirement (Color[] acceptedColors, Color[] excludedColors) {
+		foreach (ColorRequirement requirement in GetComponentsInChildren<ColorRequirement>()) {
+			requirement.Set(acceptedColors, excludedColors);
+		}
+	}
 }
