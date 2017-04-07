@@ -1,15 +1,15 @@
-#ObjectFactory
+# ObjectFactory
 
-##Author(s)
+## Author(s)
 Isaiah Mann
 
-##Abstract
+## Abstract
 Designed for Jaime Davila's "Intro to Programming in Unity" course, Fall 2016, Hampshire College. Introduces students to Unity engine and object-oriented programming. For more info about the course, see: http://tinyurl.com/unity-syllabus
 
-##Contact
+## Contact
 ibm13@hampshire.edu
 
-##Projects currently implemented:
+## Projects currently implemented:
 1. P1: Beginning Variables
 2. P2: Learning Conditionals
 3. P3: Utilizing Loops
